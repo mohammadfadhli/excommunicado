@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 async function getData(movieid) {
     const res = await fetch(
         `https://api.themoviedb.org/3/movie/${movieid}/images?api_key=${process.env.TMDB_API_KEY}&language=en`
@@ -58,7 +60,7 @@ export default async function PhotoGallery(params) {
             <>
                 <h1 className="text-xl font-bold mt-5">{title}</h1>
                 <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
-                    {carouselImages}
+                    {carouselImages}                
                 </div>
             </>
         );

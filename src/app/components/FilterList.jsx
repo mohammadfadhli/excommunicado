@@ -201,7 +201,8 @@ export default function FilterList(params) {
                         Romance
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0 mt-2">
+                <hr className="my-3" />
+                <MenuItem className="p-0">
                     <Button
                         color="red"
                         onClick={() => {

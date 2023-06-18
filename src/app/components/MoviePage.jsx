@@ -95,7 +95,7 @@ export default function MoviePage(params) {
         if (movieCards != "") {
             // if filtered results not empty, return results
             return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-5">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-5">
                     {movieCards}
                 </div>
             );

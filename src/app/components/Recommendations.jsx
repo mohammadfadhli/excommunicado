@@ -28,7 +28,7 @@ export default async function Recommendations(params) {
                     src={movie_image_url.small + params.moviesrc}
                     width={200}
                     height={300}
-                    className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover"
+                    className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover shadow-md"
                     alt="movie poster"
                 ></Image>
             );
@@ -38,7 +38,7 @@ export default async function Recommendations(params) {
                     src={placeholderimage}
                     width={200}
                     height={300}
-                    className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover"
+                    className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover shadow-md"
                     alt="movie poster"
                 ></Image>
             );

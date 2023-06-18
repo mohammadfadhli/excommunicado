@@ -23,17 +23,14 @@ export default function Pagination(params) {
     const next = () => {
         if (currentpage === params.totalpages) return;
 
-        // router.push(`/search?query=${params.query}&page=${currentpage + 1}`);
-        // window.location.href = `/search?query=${params.query}&page=${currentpage + 1}`;
-
         if (params.query) {
             // to cater for user search query
             if (params.genres) {
                 window.location.href = `/${par}?query=${
-                    params.query
+                    encodeURIComponent(params.query)
                 }&genres=${genres}&page=${currentpage + 1}`;
             } else {
-                window.location.href = `/${par}?query=${params.query}&page=${
+                window.location.href = `/${par}?query=${encodeURIComponent(params.query)}&page=${
                     currentpage + 1
                 }`;
             }
@@ -51,17 +48,14 @@ export default function Pagination(params) {
     const prev = () => {
         if (currentpage === 1) return;
 
-        // router.push(`/search?query=${params.query}&page=${currentpage - 1}`);
-        // window.location.href = `/search?query=${params.query}&page=${currentpage - 1}`
-
         if (params.query) {
             // to cater for user search query
             if (params.genres) {
-                window.location.href = `/${par}?query=${params.query}&genres=${
+                window.location.href = `/${par}?query=${encodeURIComponent(params.query)}&genres=${
                     params.genres
                 }&page=${currentpage - 1}`;
             } else {
-                window.location.href = `/${par}?query=${params.query}&page=${
+                window.location.href = `/${par}?query=${encodeURIComponent(params.query)}&page=${
                     currentpage - 1
                 }`;
             }

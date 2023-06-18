@@ -46,7 +46,7 @@ export default async function Recommendations(params) {
     }
 
     const movies = res.results.map((movie) => (
-        <Link href={"/movies/" + movie.id} className="contents">
+        <Link href={"/movie/" + movie.id} className="contents">
             <div className="w-[200px]">
                 <div className="m-0 h-[300px] w-[200px]">
                     <HasPicture moviesrc={movie.poster_path}></HasPicture>

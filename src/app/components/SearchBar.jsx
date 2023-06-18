@@ -1,17 +1,35 @@
 "use client";
 
-import { useState } from "react";
-import { Input, Button } from "../materialui.jsx";
+import { useEffect, useState } from "react";
+import { Input, Button, Alert } from "../materialui.jsx";
 
 export default function SearchBar(params) {
     const [search, setSearch] = useState(params.query);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        if (error) {
+            const toRef = setTimeout(() => {
+                setError(false);
+                clearTimeout(toRef);
+            }, 1500);
+        }
+    }, [error]);
 
     function searchMovie(e) {
         e.preventDefault();
-        console.log(search);
-        // router.push(`/search/?query=${search}&page=1`)
-        window.location.href = `/search/?query=${search}&page=1`;
-        
+        // console.log(params.query);
+        if (search) {
+            if (search.trim().length != 0) {
+                window.location.href = `/search/?query=${search.trim()}&page=1`;
+            } else {
+                setSearch("");
+                setError(true);
+            }
+        } else {
+            setSearch("");
+            setError(true);
+        }
     }
 
     return (
@@ -31,11 +49,13 @@ export default function SearchBar(params) {
                                 onChange={(e) => {
                                     setSearch(e.target.value);
                                 }}
-                                value={search}
+                                // value={search}
+                                value={search || ""}
                                 containerProps={{
                                     className: "min-w-0",
                                 }}
-                                color="white"
+                                color="black"
+                                error={error}
                             />
                             <Button
                                 type="submit"

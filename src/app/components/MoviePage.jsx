@@ -28,7 +28,7 @@ export default function MoviePage(params) {
     console.log(genres);
 
     useEffect(() => {
-        fetch(`/api/${params.type}movies?page=${page}&genres=${genres}`)
+        fetch(`/api/${params.type}?page=${page}&genres=${genres}`)
             .then((res) => res.json())
             .then((data) => {
                 setMovieData(data);
@@ -41,7 +41,7 @@ export default function MoviePage(params) {
         if (params.moviesrc != null) {
             return (
                 <Image
-                    className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100"
+                    className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
                     src={movie_image_url.medium + params.moviesrc}
                     alt="nature image"
                     width={500}
@@ -51,7 +51,7 @@ export default function MoviePage(params) {
         } else {
             return (
                 <Image
-                    className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100"
+                    className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
                     src={placeholderimage}
                     alt="nature image"
                     width={500}
@@ -71,7 +71,7 @@ export default function MoviePage(params) {
         }
 
         movieCards = movieData.data.results.map((movie) => (
-            <Link href={"/movies/" + movie.id} className="contents">
+            <Link href={"/movie/" + movie.id} className="contents">
                 <div className="flex flex-col">
                     <HasPicture moviesrc={movie.poster_path}></HasPicture>
                     <div className="py-3">
@@ -116,10 +116,10 @@ export default function MoviePage(params) {
             <div className="container mx-auto mt-5">
                 <FilterList genres={genres} route={params.type}></FilterList>
 
-                <Typography variant="h6" className="uppercase mt-5">
-                    {params.type == "popular" ? "All movies" : params.type + " Movies"}
+                <h1 className="font-bold text-xl mt-5">
+                    {params.type == "allmovies" ? "All movies" : "Upcoming movies"}
                     {/* {params.type} Movies */}
-                </Typography>
+                </h1>
                 <MovieCards></MovieCards>
                 <Pagination
                     totalpages={movieData.data.total_pages}

@@ -38,10 +38,17 @@ async function getCredits(movieid) {
 }
 
 function toHoursAndMinutes(totalMinutes) {
-    const hours = Math.floor(totalMinutes / 60);
-    const minutes = totalMinutes % 60;
 
-    return `${hours}h ${minutes}m`;
+    if(totalMinutes != "")
+    {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+    
+        return `${hours}h ${minutes}m`;
+    }
+
+    return "Unknown"
+    
 }
 
 function getRating(rating) {
@@ -127,24 +134,26 @@ export default async function Page({ params }) {
                                         />
                                     </svg>
                                 </h1>
-                                <h1 className="font-semibold">{getRating(movie.vote_average)}</h1>
+                                <h1 className="font-bold">{getRating(movie.vote_average)}</h1>
                             </div>
 
-                            <h1 className="font-semibold mt-3">
-                                Runtime: {toHoursAndMinutes(movie.runtime)}
+                            <h1 className="font-bold mt-3">
+                                Runtime: <span className="font-semibold">{toHoursAndMinutes(movie.runtime)}</span>
                             </h1>
-                            <h1 className="font-semibold mt-3">
+                            <h1 className="font-bold mt-3">
                                 Release Date:{" "}
+                                <span className="font-semibold">
                                 <DateFormat
                                     release_date={movie.release_date}
                                 ></DateFormat>
+                                </span>
                             </h1>
                             <div className="flex gap-3 mt-3">
-                                {movie.genres.slice(0, 3).map((genre) => (
+                                {movie.genres != "" ? movie.genres.slice(0, 3).map((genre) => (
                                     <div className="bg-blue-700 p-2 rounded-lg text-white text-sm">
                                         {genre.name}
                                     </div>
-                                ))}
+                                )) : "No Genres"}
                             </div>
                             {movie.homepage ? (
                                 <>
@@ -162,9 +171,9 @@ export default async function Page({ params }) {
                                     <p className="mt-3">No Website</p>
                                 </>
                             )}
-                            <h1 className="font-semibold mt-3">Overview</h1>
+                            <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
-                                {movie.overview}
+                                {movie.overview != "" ? movie.overview : "No Overview."}
                             </p>
                         </div>
                     </div>

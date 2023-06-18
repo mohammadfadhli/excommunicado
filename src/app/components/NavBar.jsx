@@ -29,7 +29,7 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link href={"/popular?page=1"} className="flex items-center text-white">All Movies</Link>
+        <Link href={"/movies?page=1"} className="flex items-center">All Movies</Link>
       </Typography>
       <Typography
         as="li"
@@ -37,19 +37,19 @@ export default function Example() {
         color="blue-gray"
         className="p-1 font-normal"
       >
-        <Link href={"/upcoming?page=1"} className="flex items-center text-white">Upcoming</Link>
+        <Link href={"/upcoming?page=1"} className="flex items-center">Upcoming</Link>
       </Typography>
     </ul>
   );
  
   return (
     <>
-      <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-[#282828] border-none">
+      <Navbar className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4" blurred={false}>
         <div className="flex items-center justify-between text-blue-gray-900">
           <Typography
             as="a"
             href="/"
-            className="mr-4 cursor-pointer py-1.5 font-medium text-white"
+            className="mr-4 cursor-pointer py-1.5 font-medium"
           >
             Excommunicado
           </Typography>
@@ -74,7 +74,7 @@ export default function Example() {
                   fill="none"
                   className="h-6 w-6"
                   viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  stroke="black"
                   strokeWidth={2}
                 >
                   <path
@@ -88,7 +88,7 @@ export default function Example() {
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6"
                   fill="none"
-                  stroke="currentColor"
+                  stroke="black"
                   strokeWidth={2}
                 >
                   <path

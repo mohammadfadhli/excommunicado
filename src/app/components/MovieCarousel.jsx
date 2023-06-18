@@ -46,8 +46,8 @@ export default async function MovieCarousel() {
                         {movie.title}
                     </Typography>
                     <div className="flex justify-center gap-2">
-                        <Link href={"/movies/" + movie.id}>
-                        <Button color="white" className="hover:scale-105 ease-in-out">
+                        <Link href={"/movie/" + movie.id}>
+                        <Button color="white" className="">
                             See More
                         </Button>
                         </Link>

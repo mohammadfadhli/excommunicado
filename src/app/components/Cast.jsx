@@ -36,7 +36,7 @@ export default function Cast(params) {
 
     const castCards = params.credits.slice(0, 12).map((person) => (
         <>
-            <div className="w-[150px] bg-white rounded-xl">
+            <div className="w-[150px] bg-white rounded-xl shadow-md">
                 <div floated={false} className="m-0 w-[150px] h-[200px] rounded-lg">
                     <HasPicture
                         profilepicture={person.profile_path}
@@ -58,7 +58,7 @@ export default function Cast(params) {
     {
         return (
             <>
-            <h1 className="text-xl font-semibold mt-5">Main Cast</h1>
+            <h1 className="text-xl font-bold mt-5">Main Cast</h1>
             <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
                 {castCards}
             </div>

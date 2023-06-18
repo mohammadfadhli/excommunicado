@@ -12,12 +12,22 @@ import { useEffect, useState } from "react";
 
 export default function FilterList(params) {
     const [activeFilter, setActiveFilter] = useState([]);
+    const [par, setPar] = useState("")
 
     useEffect(() => {
         console.log(params.genres);
 
         if (params.genres) {
             setActiveFilter(params.genres.split(","));
+        }
+
+        if(params.route == "allmovies")
+        {
+            setPar("movies")
+        }
+        else if(params.route == "upcomingmovies")
+        {
+            setPar("upcoming")
         }
     }, []);
 
@@ -72,15 +82,15 @@ export default function FilterList(params) {
         let text = activeFilter.join("%2C");
 
         if (text) {
-            window.location.href = `/${params.route}?genres=${text}&page=1`;
+            window.location.href = `/${par}?genres=${text}&page=1`;
         } else {
-            window.location.href = `/${params.route}?page=1`;
+            window.location.href = `/${par}?page=1`;
         }
     }
 
     function removeFilters() {
         setActiveFilter([]);
-        window.location.href = `/${params.route}?page=1`;
+        window.location.href = `/${par}?page=1`;
     }
 
     return (

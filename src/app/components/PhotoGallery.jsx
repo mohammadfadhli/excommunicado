@@ -56,7 +56,7 @@ export default async function PhotoGallery(params) {
     if (carouselImages != "") {
         return (
             <>
-                <h1 className="text-xl font-semibold mt-5">{title}</h1>
+                <h1 className="text-xl font-bold mt-5">{title}</h1>
                 <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
                     {carouselImages}
                 </div>

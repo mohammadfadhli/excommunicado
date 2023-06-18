@@ -32,21 +32,25 @@ export default async function HorizontalScrollMovies(params) {
 
     function HasPicture(params) {
         if (params.moviesrc != null) {
-            return <Image
-                src={movie_image_url.small + params.moviesrc}
-                width={200}
-                height={300}
-                className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover"
-                alt="movie poster"
-            ></Image>;
+            return (
+                <Image
+                    src={movie_image_url.small + params.moviesrc}
+                    width={200}
+                    height={300}
+                    className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover shadow-md"
+                    alt="movie poster"
+                ></Image>
+            );
         } else {
-            return <Image
-                src={placeholderimage}
-                width={200}
-                height={300}
-                className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover"
-                alt="movie poster"
-            ></Image>;
+            return (
+                <Image
+                    src={placeholderimage}
+                    width={200}
+                    height={300}
+                    className="rounded-lg transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 w-full h-full object-cover shadow-md"
+                    alt="movie poster"
+                ></Image>
+            );
         }
     }
 
@@ -66,7 +70,7 @@ export default async function HorizontalScrollMovies(params) {
     // ));
 
     const moviesCards = movies.results.map((movie) => (
-        <Link href={"/movies/" + movie.id} className="contents">
+        <Link href={"/movie/" + movie.id} className="contents">
             <div className="w-[200px]">
                 <div className="m-0 h-[300px] w-[200px]">
                     <HasPicture moviesrc={movie.poster_path}></HasPicture>
@@ -89,20 +93,37 @@ export default async function HorizontalScrollMovies(params) {
         </Link>
     ));
 
+    function CheckPath() {
+        if (params.movietype == "popular") {
+            return (
+                <>
+                    <Link href={"/movies?page=1"}>
+                        <h1 className="font-bold text-base underline hover:text-[#1e88e5]">
+                            View all
+                        </h1>
+                    </Link>
+                </>
+            );
+        }
+
+        return (
+            <Link href={"/" + params.movietype + "?page=1"}>
+                <h1 className="font-bold text-base underline hover:text-[#1e88e5]">
+                    View all
+                </h1>
+            </Link>
+        );
+    }
+
     return (
         <>
             <div className="container mx-auto flex justify-between mt-5">
-                <Typography className="uppercase" variant="h6">
-                    {params.movietype} Movies
-                </Typography>
-                <Link href={"/" + params.movietype + "?page=1"}>
-                    <Typography
-                        className=" underline hover:text-light-blue-900"
-                        variant="h6"
-                    >
-                        View all
-                    </Typography>
-                </Link>
+                <h1 className="font-bold text-xl">
+                    {params.movietype == "popular" ? "Popular" : "Upcoming"}{" "}
+                    Movies
+                    {/* {params.movietype} Movies */}
+                </h1>
+                <CheckPath></CheckPath>
             </div>
 
             <div className="flex flex-nowrap gap-5 py-3 overflow-x-scroll">

@@ -3,13 +3,22 @@
 import { IconButton, Typography } from "@material-tailwind/react";
 import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function Pagination(params) {
-    const postsPerPage = 20
-
-    const router = useRouter();
 
     const currentpage = parseInt(params.currentpage);
+    const [par, setPar] = useState("");
+
+    useEffect(() => {
+        if (params.route == "allmovies") {
+            setPar("movies");
+        } else if (params.route == "upcomingmovies") {
+            setPar("upcoming");
+        } else if (params.route == "search") {
+            setPar("search");
+        }
+    }, []);
 
     const next = () => {
         if (currentpage === params.totalpages) return;
@@ -17,29 +26,25 @@ export default function Pagination(params) {
         // router.push(`/search?query=${params.query}&page=${currentpage + 1}`);
         // window.location.href = `/search?query=${params.query}&page=${currentpage + 1}`;
 
-        if(params.query) // to cater for user search query
-        {
-            if(params.genres)
-            {
-                window.location.href = `/${params.route}?query=${params.query}&genres=${genres}&page=${currentpage + 1}`;
+        if (params.query) {
+            // to cater for user search query
+            if (params.genres) {
+                window.location.href = `/${par}?query=${
+                    params.query
+                }&genres=${genres}&page=${currentpage + 1}`;
+            } else {
+                window.location.href = `/${par}?query=${params.query}&page=${
+                    currentpage + 1
+                }`;
             }
-            else
-            {
-                window.location.href = `/${params.route}?query=${params.query}&page=${currentpage + 1}`;
+        } else {
+            if (params.genres) {
+                window.location.href = `/${par}?genres=${params.genres}&page=${
+                    currentpage + 1
+                }`;
+            } else {
+                window.location.href = `/${par}?page=${currentpage + 1}`;
             }
-            
-        }
-        else
-        {
-            if(params.genres)
-            {
-                window.location.href = `/${params.route}?genres=${params.genres}&page=${currentpage + 1}`;
-            }
-            else
-            {
-                window.location.href = `/${params.route}?page=${currentpage + 1}`;
-            }
-            
         }
     };
 
@@ -49,29 +54,25 @@ export default function Pagination(params) {
         // router.push(`/search?query=${params.query}&page=${currentpage - 1}`);
         // window.location.href = `/search?query=${params.query}&page=${currentpage - 1}`
 
-        if(params.query) // to cater for user search query
-        {
-            if(params.genres)
-            {
-                window.location.href = `/${params.route}?query=${params.query}&genres=${params.genres}&page=${currentpage - 1}`
+        if (params.query) {
+            // to cater for user search query
+            if (params.genres) {
+                window.location.href = `/${par}?query=${params.query}&genres=${
+                    params.genres
+                }&page=${currentpage - 1}`;
+            } else {
+                window.location.href = `/${par}?query=${params.query}&page=${
+                    currentpage - 1
+                }`;
             }
-            else
-            {
-                window.location.href = `/${params.route}?query=${params.query}&page=${currentpage - 1}`
+        } else {
+            if (params.genres) {
+                window.location.href = `/${par}?genres=${params.genres}&page=${
+                    currentpage - 1
+                }`;
+            } else {
+                window.location.href = `/${par}?page=${currentpage - 1}`;
             }
-            
-        }
-        else
-        {
-            if(params.genres)
-            {
-                window.location.href = `/${params.route}?genres=${params.genres}&page=${currentpage - 1}`
-            }
-            else
-            {
-                window.location.href = `/${params.route}?page=${currentpage - 1}`
-            }
-            
         }
     };
 

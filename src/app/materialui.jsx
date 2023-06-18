@@ -10,6 +10,7 @@ import {
     ButtonGroup,
     Carousel,
     Chip,
+    Alert,
     Avatar,
     Accordion,
     AccordionHeader,
@@ -20,4 +21,4 @@ import {
 export { Card, CardHeader, CardBody, CardFooter, Typography, Button, ButtonGroup, Carousel, Chip,
     Accordion,
     AccordionHeader,
-    AccordionBody, Avatar, Input };
+    AccordionBody, Avatar, Input, Alert};

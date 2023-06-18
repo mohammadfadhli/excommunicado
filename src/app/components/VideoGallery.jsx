@@ -40,7 +40,7 @@ export default async function VideoGallery(params) {
     {
         return (
             <>
-            <h1 className="text-xl font-semibold mt-5">Trailers</h1>
+            <h1 className="text-xl font-bold mt-5">Trailers</h1>
             <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
                 {vids}
             </div>

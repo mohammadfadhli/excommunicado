@@ -36,7 +36,7 @@ export default async function MovieCarousel() {
                 }
                 alt="nature image"
             />
-            <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/75">
+            <div className="absolute inset-0 grid h-full w-full place-items-center bg-black/50">
                 <div className="w-3/4 text-center md:w-2/4">
                     <Typography
                         variant="h1"
@@ -47,7 +47,7 @@ export default async function MovieCarousel() {
                     </Typography>
                     <div className="flex justify-center gap-2">
                         <Link href={"/movies/" + movie.id}>
-                        <Button size="lg" color="white" className="hover:scale-105 ease-in-out">
+                        <Button color="white" className="hover:scale-105 ease-in-out">
                             See More
                         </Button>
                         </Link>

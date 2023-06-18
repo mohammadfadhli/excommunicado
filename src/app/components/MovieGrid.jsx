@@ -81,7 +81,7 @@ export default function MovieGrid(params) {
 
     return (
         <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-5 content-stretch">
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-5 content-stretch">
                 {movieCards}
             </div>
         </>

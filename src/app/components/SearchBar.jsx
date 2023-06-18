@@ -35,7 +35,7 @@ export default function SearchBar(params) {
                                 containerProps={{
                                     className: "min-w-0",
                                 }}
-                                color="black"
+                                color="white"
                             />
                             <Button
                                 type="submit"

@@ -162,7 +162,7 @@ export default async function Page({ params }) {
                                         className="mt-3 hover:text-blue-900"
                                     >
                                         <Button color="green">
-                                            Visit Website
+                                            Visit Homepage
                                         </Button>
                                     </Link>
                                 </>

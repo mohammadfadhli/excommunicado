@@ -115,6 +115,7 @@ export default function MoviePage(params) {
         return (
             <div className="container mx-auto mt-5">
                 <FilterList genres={genres} route={params.type}></FilterList>
+                
 
                 <h1 className="font-bold text-xl mt-5">
                     {params.type == "allmovies" ? "All movies" : "Upcoming movies"}

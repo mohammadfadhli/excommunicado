@@ -58,7 +58,7 @@ export default function Cast(params) {
     {
         return (
             <>
-            <h1 className="text-xl font-bold mt-5">Main Cast</h1>
+            <h1 className="font-bold mt-5">Main Cast</h1>
             <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
                 {castCards}
             </div>

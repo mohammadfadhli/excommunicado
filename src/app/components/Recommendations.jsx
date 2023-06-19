@@ -74,12 +74,12 @@ export default async function Recommendations(params) {
         return (
             <>
                 <div className="container mx-auto flex justify-between mt-5">
-                    <h1 className="text-xl font-semibold">
+                    <h1 className="font-semibold">
                         You May Also Like
                     </h1>
                 </div>
     
-                <div className="flex flex-nowrap gap-5 py-3 overflow-x-scroll">
+                <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
                     {movies}
                 </div>
             </>

@@ -117,10 +117,16 @@ export default function MoviePage(params) {
                 <FilterList genres={genres} route={params.type}></FilterList>
                 
 
-                <h1 className="font-bold text-xl mt-5">
+                <h1 className="font-bold mt-5">
                     {params.type == "allmovies" ? "All movies" : "Upcoming movies"}
                     {/* {params.type} Movies */}
                 </h1>
+                <Pagination
+                    totalpages={movieData.data.total_pages}
+                    currentpage={page}
+                    route={params.type}
+                    genres={genres}
+                ></Pagination>
                 <MovieCards></MovieCards>
                 <Pagination
                     totalpages={movieData.data.total_pages}

@@ -47,10 +47,18 @@ export default async function Page({ searchParams }) {
                 <SearchBar query={userquery}></SearchBar>
 
                 <div className="container mt-5">
-                    <Typography variant="h6" className="uppercase ">
+                    <h1 className="font-bold mt-5">
                         Results for: {userquery}
-                    </Typography>
+                    </h1>
                 </div>
+
+                <Pagination
+                    totalpages={res.total_pages}
+                    query={searchParams.query}
+                    currentpage={page}
+                    route="search"
+                ></Pagination>
+
                 <MovieGrid movies={res.results}></MovieGrid>
 
                 <Pagination

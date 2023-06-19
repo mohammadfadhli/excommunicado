@@ -6,13 +6,13 @@ import { Input, Button, Alert } from "../materialui.jsx";
 export default function SearchBar(params) {
     const [search, setSearch] = useState(params.query);
     const [error, setError] = useState(false);
-    const [placeholdermsg, setPlaceholderMsg] = useState("Search for a movie...")
+    const [placeholdermsg, setPlaceholderMsg] = useState("Search a movie...")
 
     useEffect(() => {
         if (error) {
             const toRef = setTimeout(() => {
                 setError(false);
-                setPlaceholderMsg("Search for a movie...")
+                setPlaceholderMsg("Search a movie...")
                 clearTimeout(toRef);
             }, 1500);
         }

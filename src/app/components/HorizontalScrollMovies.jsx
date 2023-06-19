@@ -71,8 +71,8 @@ export default async function HorizontalScrollMovies(params) {
 
     const moviesCards = movies.results.map((movie) => (
         <Link href={"/movie/" + movie.id} className="contents">
-            <div className="w-[200px]">
-                <div className="m-0 h-[300px] w-[200px]">
+            <div className="w-[150px] md:w-[200px]">
+                <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
                     <HasPicture moviesrc={movie.poster_path}></HasPicture>
                 </div>
                 <div className="m-0 py-3">
@@ -118,7 +118,7 @@ export default async function HorizontalScrollMovies(params) {
     return (
         <>
             <div className="container mx-auto flex justify-between mt-5">
-                <h1 className="font-bold text-xl">
+                <h1 className="font-bold text-base">
                     {params.movietype == "popular" ? "Popular" : "Upcoming"}{" "}
                     Movies
                     {/* {params.movietype} Movies */}
@@ -126,7 +126,7 @@ export default async function HorizontalScrollMovies(params) {
                 <CheckPath></CheckPath>
             </div>
 
-            <div className="flex flex-nowrap gap-5 py-3 overflow-x-scroll">
+            <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
                 {moviesCards}
             </div>
         </>

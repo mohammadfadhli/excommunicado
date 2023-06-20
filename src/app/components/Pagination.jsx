@@ -76,26 +76,26 @@ export default function Pagination(params) {
                 <IconButton
                     size="sm"
                     variant="outlined"
-                    color="blue-gray"
+                    color="white"
                     onClick={prev}
                     disabled={currentpage === 1}
                 >
                     <ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
                 </IconButton>
-                <Typography color="gray" className="font-normal">
+                <Typography color="white" className="font-normal">
                     Page{" "}
-                    <strong className="text-blue-gray-900">
+                    <strong className="text-white">
                         {currentpage}
                     </strong>{" "}
                     of{" "}
-                    <strong className="text-blue-gray-900">
+                    <strong className="text-white">
                         {params.totalpages}
                     </strong>
                 </Typography>
                 <IconButton
                     size="sm"
                     variant="outlined"
-                    color="blue-gray"
+                    color="white"
                     onClick={next}
                     disabled={currentpage === params.totalpages}
                 >

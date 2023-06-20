@@ -62,7 +62,7 @@ export default function Example() {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
+                color="white"
                 className="p-1 font-normal"
             >
                 <Link href={"/movies?page=1"} className="flex items-center">
@@ -72,7 +72,7 @@ export default function Example() {
             <Typography
                 as="li"
                 variant="small"
-                color="blue-gray"
+                color="white"
                 className="p-1 font-normal"
             >
                 <Link href={"/upcoming?page=1"} className="flex items-center">
@@ -91,7 +91,7 @@ export default function Example() {
                     containerProps={{
                         className: "min-w-0",
                     }}
-                    color="black"
+                    color="white"
                     value={search || ""}
                     error={error}
                     onChange={(e) => {
@@ -113,10 +113,10 @@ export default function Example() {
     return (
         <>
             <Navbar
-                className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4"
+                className="sticky inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4 bg-[#282828]"
                 blurred={false}
             >
-                <div className="flex items-center justify-between text-blue-gray-900">
+                <div className="flex items-center justify-between text-white">
                     <Typography
                         as="a"
                         href="/"
@@ -145,7 +145,7 @@ export default function Example() {
                                     fill="none"
                                     className="h-6 w-6"
                                     viewBox="0 0 24 24"
-                                    stroke="black"
+                                    stroke="white"
                                     strokeWidth={2}
                                 >
                                     <path
@@ -159,7 +159,7 @@ export default function Example() {
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-6 w-6"
                                     fill="none"
-                                    stroke="black"
+                                    stroke="white"
                                     strokeWidth={2}
                                 >
                                     <path

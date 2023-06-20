@@ -2,6 +2,7 @@ import Image from "next/image";
 import placeholderimage from "../assets/placeholderimage.png";
 import Link from "next/link";
 import Rating from "./Rating";
+import { notFound } from "next/navigation";
 
 export default function MovieGrid(params) {
     const movies = params.movies;
@@ -67,6 +68,11 @@ export default function MovieGrid(params) {
                 </Link>
             );
         }
+    }
+
+    if(movies.length == 0)
+    {
+        return <><div className="flex items-center justify-center"><h1>No results found.</h1></div></>
     }
 
     const movieCards = movies.map((movie) => (

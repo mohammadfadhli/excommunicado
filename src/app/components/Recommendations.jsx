@@ -2,7 +2,7 @@ import Link from "next/link";
 import Rating from "./Rating.jsx";
 import Image from "next/image";
 import { movie_image_url } from "../tmdb_images/movieImage";
-import placeholderimage from "../assets/placeholderimage.png"
+import placeholderimage from "../assets/placeholderimage.png";
 
 async function getData(movieid) {
     const res = await fetch(
@@ -69,21 +69,19 @@ export default async function Recommendations(params) {
         </Link>
     ));
 
-    if(movies != "")
-    {
+    if (movies != "") {
         return (
             <>
-                <div className="container mx-auto flex justify-between mt-5">
-                    <h1 className="font-bold">
-                        You May Also Like
-                    </h1>
-                </div>
-    
-                <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
-                    {movies}
+                <div className="my-5">
+                    <div className="container mx-auto flex justify-between">
+                        <h1 className="font-bold">You May Also Like</h1>
+                    </div>
+
+                    <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
+                        {movies}
+                    </div>
                 </div>
             </>
         );
     }
-    
 }

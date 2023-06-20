@@ -14,7 +14,7 @@ async function getData(movieid) {
 
 export default async function PhotoGallery(params) {
     const images = await getData(params.movieid);
-    const gallerytype = params.type
+    const gallerytype = params.type;
 
     // const carouselImages = images.backdrops
     //     .slice(0, 5)
@@ -26,39 +26,41 @@ export default async function PhotoGallery(params) {
     //         ></img>
     //     ));
 
-    let carouselImages = ""
-    let title = ""
+    let carouselImages = "";
+    let title = "";
 
-    if(gallerytype == "backdrops")
-    {
-        carouselImages = images[gallerytype].slice(0,5).map((img) => (
-            <img
-                src={"https://image.tmdb.org/t/p/original" + img.file_path}
-                className="object-cover rounded-lg"
-            ></img>
-        ));
-        
-        title = "Backdrops"
-    }
-    else
-    {
-        carouselImages = images[gallerytype].slice(0,5).map((img) => (
-            <img
-                src={"https://image.tmdb.org/t/p/original" + img.file_path}
-                className="object-cover rounded-lg w-[250px]"
-            ></img>
-        ));
+    if (gallerytype == "backdrops") {
+        carouselImages = images[gallerytype]
+            .slice(0, 5)
+            .map((img) => (
+                <img
+                    src={"https://image.tmdb.org/t/p/original" + img.file_path}
+                    className="object-cover rounded-lg"
+                ></img>
+            ));
 
-        title = "Posters"
+        title = "Backdrops";
+    } else {
+        carouselImages = images[gallerytype]
+            .slice(0, 5)
+            .map((img) => (
+                <img
+                    src={"https://image.tmdb.org/t/p/original" + img.file_path}
+                    className="object-cover rounded-lg w-[250px]"
+                ></img>
+            ));
+
+        title = "Posters";
     }
-    
 
     if (carouselImages != "") {
         return (
             <>
-                <h1 className="font-bold mt-5">{title}</h1>
-                <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
-                    {carouselImages}                
+                <div className="my-5">
+                    <h1 className="font-bold">{title}</h1>
+                    <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
+                        {carouselImages}
+                    </div>
                 </div>
             </>
         );

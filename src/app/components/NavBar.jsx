@@ -65,7 +65,7 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal"
             >
-                <Link href={"/movies?page=1"} className="flex items-center">
+                <Link href={"/movies?page=1"} className="flex items-center hover:text-blue-500">
                     Movies
                 </Link>
             </Typography>
@@ -75,7 +75,7 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal "
             >
-                <Link href={"/upcoming?page=1"} className="flex items-center ">
+                <Link href={"/upcoming?page=1"} className="flex items-center hover:text-blue-500">
                     Upcoming
                 </Link>
             </Typography>
@@ -120,7 +120,7 @@ export default function Example() {
                     <Typography
                         as="a"
                         href="/"
-                        className="mr-4 cursor-pointer py-1.5 font-bold"
+                        className="mr-4 cursor-pointer py-1.5 font-bold hover:text-blue-500"
                     >
                         Excommunicado
                     </Typography>

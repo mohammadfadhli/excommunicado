@@ -37,7 +37,10 @@ export default function Cast(params) {
     const castCards = params.credits.slice(0, 12).map((person) => (
         <>
             <div className="w-[150px] bg-[#282828] rounded-xl shadow-md">
-                <div floated={false} className="m-0 w-[150px] h-[200px] rounded-lg">
+                <div
+                    floated={false}
+                    className="m-0 w-[150px] h-[200px] rounded-lg"
+                >
                     <HasPicture
                         profilepicture={person.profile_path}
                     ></HasPicture>
@@ -54,17 +57,16 @@ export default function Cast(params) {
         </>
     ));
 
-    if(castCards != "")
-    {
+    if (castCards != "") {
         return (
             <>
-            <h1 className="font-bold mt-5">Main Cast</h1>
-            <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
-                {castCards}
-            </div>
+                <div className="my-5">
+                    <h1 className="font-bold">Main Cast</h1>
+                    <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
+                        {castCards}
+                    </div>
+                </div>
             </>
         );
     }
-
-    
 }

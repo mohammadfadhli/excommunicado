@@ -99,7 +99,7 @@ export default async function HorizontalScrollMovies(params) {
                 <>
                     <Link
                         href={"/movies?page=1"}
-                        className="font-bold text-base underline hover:text-[#1e88e5]"
+                        className="font-bold text-base underline hover:text-blue-500"
                     >
                         View all
                     </Link>
@@ -110,7 +110,7 @@ export default async function HorizontalScrollMovies(params) {
         return (
             <Link
                 href={"/" + params.movietype + "?page=1"}
-                className="font-bold text-base underline hover:text-[#1e88e5]"
+                className="font-bold text-base underline hover:text-blue-500"
             >
                 View all
             </Link>
@@ -119,17 +119,19 @@ export default async function HorizontalScrollMovies(params) {
 
     return (
         <>
-            <section className="container mx-auto flex justify-between mt-5">
-                <h2 className="font-bold text-base">
-                    {params.movietype == "popular" ? "Popular" : "Upcoming"}{" "}
-                    Movies
-                    {/* {params.movietype} Movies */}
-                </h2>
-                <CheckPath></CheckPath>
-            </section>
+            <div className="my-5">
+                <section className="container mx-auto flex justify-between">
+                    <h2 className="font-bold text-base">
+                        {params.movietype == "popular" ? "Popular" : "Upcoming"}{" "}
+                        Movies
+                        {/* {params.movietype} Movies */}
+                    </h2>
+                    <CheckPath></CheckPath>
+                </section>
 
-            <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
-                {moviesCards}
+                <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
+                    {moviesCards}
+                </div>
             </div>
         </>
     );

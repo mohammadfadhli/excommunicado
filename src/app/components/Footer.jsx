@@ -3,8 +3,8 @@ import { Typography } from "../materialui.jsx";
 export default function Footer(){
 
     return (
-        <footer className="flex w-full flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 border-t border-blue-gray-50 p-6 text-center md:justify-between">
-          <Typography color="blue-gray" className="font-normal">
+        <footer className="flex w-full flex-row flex-wrap items-center justify-center gap-y-6 gap-x-12 p-6 text-center md:justify-between bg-[#282828]">
+          <Typography color="white" className="font-normal">
             &copy; 2023 Excommunicado
           </Typography>
           <ul className="flex flex-wrap items-center gap-y-2 gap-x-8">
@@ -12,7 +12,7 @@ export default function Footer(){
               <Typography
                 as="a"
                 href="#"
-                color="blue-gray"
+                color="white"
                 className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
               >
                 About Us
@@ -22,7 +22,7 @@ export default function Footer(){
               <Typography
                 as="a"
                 href="#"
-                color="blue-gray"
+                color="white"
                 className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
               >
                 License
@@ -32,7 +32,7 @@ export default function Footer(){
               <Typography
                 as="a"
                 href="#"
-                color="blue-gray"
+                color="white"
                 className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
               >
                 Contribute
@@ -42,7 +42,7 @@ export default function Footer(){
               <Typography
                 as="a"
                 href="#"
-                color="blue-gray"
+                color="white"
                 className="font-normal transition-colors hover:text-blue-500 focus:text-blue-500"
               >
                 Contact Us

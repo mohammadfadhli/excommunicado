@@ -36,16 +36,16 @@ export default async function VideoGallery(params) {
         </>
     ));
 
-    if(vids != "")
-    {
+    if (vids != "") {
         return (
             <>
-            <h1 className="font-bold mt-5">Trailers</h1>
-            <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
-                {vids}
-            </div>
+                <div className="my-5">
+                    <h1 className="font-bold">Trailers</h1>
+                    <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
+                        {vids}
+                    </div>
+                </div>
             </>
         );
     }
-    
 }

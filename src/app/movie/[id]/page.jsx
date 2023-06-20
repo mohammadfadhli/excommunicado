@@ -100,7 +100,7 @@ export default async function Page({ params }) {
                 ></Image>
                 <figcaption className="absolute inset-0 grid h-full w-full place-items-center bg-black/75 p-3">
                     <div className="text-center">
-                        <h1 className="text-3xl md:text-5xl lg:text-6xl text-white">
+                        <h1 className="text-3xl md:text-5xl lg:text-6xl text-white font-semibold">
                             {movie.title}
                         </h1>
                         <h1 className="text-xl md:text-2xl lg:text-3xl text-white mt-3">

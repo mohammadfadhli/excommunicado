@@ -119,8 +119,8 @@ export default function FilterList(params) {
                     <h1>Filters</h1>
                 </Button>
             </MenuHandler>
-            <MenuList>
-                <MenuItem className="p-0">
+            <MenuList className="bg-[#282828] border-none text-white">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="28"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -129,7 +129,7 @@ export default function FilterList(params) {
                         Action
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="12"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -138,7 +138,7 @@ export default function FilterList(params) {
                         Adventure
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="16"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -147,7 +147,7 @@ export default function FilterList(params) {
                         Animation
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="35"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -156,7 +156,7 @@ export default function FilterList(params) {
                         Comedy
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="80"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -165,7 +165,7 @@ export default function FilterList(params) {
                         Crime
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="27"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -174,7 +174,7 @@ export default function FilterList(params) {
                         Horror
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="9648"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -183,7 +183,7 @@ export default function FilterList(params) {
                         Mystery
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="878"
                         className="flex cursor-pointer items-center gap-2 p-2"
@@ -192,7 +192,7 @@ export default function FilterList(params) {
                         Sci-Fi
                     </label>
                 </MenuItem>
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-gray-800 focus:text-white active:bg-gray-800 active:text-white">
                     <label
                         htmlFor="10749"
                         className="flex cursor-pointer items-center gap-2 p-2"

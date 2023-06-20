@@ -74,7 +74,7 @@ export default async function Recommendations(params) {
         return (
             <>
                 <div className="container mx-auto flex justify-between mt-5">
-                    <h1 className="font-semibold">
+                    <h1 className="font-bold">
                         You May Also Like
                     </h1>
                 </div>

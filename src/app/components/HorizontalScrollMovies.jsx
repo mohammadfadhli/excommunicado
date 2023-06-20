@@ -97,34 +97,36 @@ export default async function HorizontalScrollMovies(params) {
         if (params.movietype == "popular") {
             return (
                 <>
-                    <Link href={"/movies?page=1"}>
-                        <h1 className="font-bold text-base underline hover:text-[#1e88e5]">
-                            View all
-                        </h1>
+                    <Link
+                        href={"/movies?page=1"}
+                        className="font-bold text-base underline hover:text-[#1e88e5]"
+                    >
+                        View all
                     </Link>
                 </>
             );
         }
 
         return (
-            <Link href={"/" + params.movietype + "?page=1"}>
-                <h1 className="font-bold text-base underline hover:text-[#1e88e5]">
-                    View all
-                </h1>
+            <Link
+                href={"/" + params.movietype + "?page=1"}
+                className="font-bold text-base underline hover:text-[#1e88e5]"
+            >
+                View all
             </Link>
         );
     }
 
     return (
         <>
-            <div className="container mx-auto flex justify-between mt-5">
-                <h1 className="font-bold text-base">
+            <section className="container mx-auto flex justify-between mt-5">
+                <h2 className="font-bold text-base">
                     {params.movietype == "popular" ? "Popular" : "Upcoming"}{" "}
                     Movies
                     {/* {params.movietype} Movies */}
-                </h1>
+                </h2>
                 <CheckPath></CheckPath>
-            </div>
+            </section>
 
             <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
                 {moviesCards}

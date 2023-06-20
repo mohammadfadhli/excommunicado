@@ -202,7 +202,7 @@ export default function FilterList(params) {
                     </label>
                 </MenuItem>
                 <hr className="my-3" />
-                <MenuItem className="p-0">
+                <MenuItem className="p-0 focus:bg-transparent active:bg-transparent">
                     <Button
                         color="red"
                         onClick={() => {
@@ -213,7 +213,7 @@ export default function FilterList(params) {
                         Remove Filters
                     </Button>
                 </MenuItem>
-                <MenuItem className="p-0 mt-2">
+                <MenuItem className="p-0 mt-2 focus:bg-transparent active:bg-transparent">
                     <Button
                         color="green"
                         onClick={() => {

@@ -36,17 +36,17 @@ export default function Cast(params) {
 
     const castCards = params.credits.slice(0, 12).map((person) => (
         <>
-            <div className="w-[150px] bg-white rounded-xl shadow-md">
+            <div className="w-[150px] bg-[#282828] rounded-xl shadow-md">
                 <div floated={false} className="m-0 w-[150px] h-[200px] rounded-lg">
                     <HasPicture
                         profilepicture={person.profile_path}
                     ></HasPicture>
                 </div>
                 <CardBody className="text-center p-3">
-                    <h4 className="font-bold mb-2 text-xs text-black">
+                    <h4 className="font-bold mb-2 text-xs text-white">
                         {person.name}
                     </h4>
-                    <h4 className="font-medium text-xs text-black">
+                    <h4 className="font-medium text-xs text-white">
                         {person.character}
                     </h4>
                 </CardBody>

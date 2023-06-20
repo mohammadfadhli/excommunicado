@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 async function getData(movieid) {
     const res = await fetch(
         `https://api.themoviedb.org/3/movie/${movieid}/images?api_key=${process.env.TMDB_API_KEY}&language=en`

@@ -8,6 +8,7 @@ import placeholderimage from "../../assets/placeholderimage.png";
 import VideoGallery from "@/app/components/VideoGallery.jsx";
 import Recommendations from "@/app/components/Recommendations.jsx";
 import PhotoGallery from "@/app/components/PhotoGallery.jsx";
+import Crew from "@/app/components/Crew.jsx";
 
 async function getData(movieid) {
     const res = await fetch(
@@ -178,6 +179,8 @@ export default async function Page({ params }) {
                         </div>
                     </div>
                 </topcard>
+
+                <Crew movieid={movie.id} credits={credits.crew}></Crew>
 
                 <Cast movieid={movie.id} credits={credits.cast}></Cast>
 

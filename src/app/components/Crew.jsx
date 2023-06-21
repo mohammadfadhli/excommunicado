@@ -18,7 +18,7 @@ export default function Crew(params) {
 
     return (
         <>
-            { directors.at.length != 0 ? <><h1 className="font-bold mt-5">{directors.length > 1 ? "Directors" : "Director"}</h1>
+            { directors.length != 0 ? <><h1 className="font-bold mt-5">{directors.length > 1 ? "Directors" : "Director"}</h1>
             <div className="">{directors.join(", ")}</div></> : "" }
             { producers.length != 0 ? <><h1 className="font-bold mt-5">{producers.length > 1 ? "Producers" : "Producer"}</h1>
             <div className="">{producers.join(", ")}</div></> : "" }

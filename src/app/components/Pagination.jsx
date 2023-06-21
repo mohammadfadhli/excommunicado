@@ -21,6 +21,9 @@ export default function Pagination(params) {
         else if (params.route == "tvshows") {
             setPar("tvshows");
         }
+        else if (params.route == "people") {
+
+        }setPar("people");
         
     }, []);
 

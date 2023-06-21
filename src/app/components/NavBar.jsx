@@ -89,6 +89,16 @@ export default function Example() {
                     Upcoming
                 </Link>
             </Typography>
+            <Typography
+                as="li"
+                variant="small"
+                color="white"
+                className="p-1 font-normal "
+            >
+                <Link href={""} className="flex items-center hover:text-blue-500">
+                    People
+                </Link>
+            </Typography>
             <div className="relative w-full">
 
               <form onSubmit={(e) => {

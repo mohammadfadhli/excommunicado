@@ -2,7 +2,6 @@ import Image from "next/image";
 import placeholderimage from "../assets/placeholderimage.png";
 import Link from "next/link";
 import Rating from "./Rating";
-import { notFound } from "next/navigation";
 
 export default function MovieGrid(params) {
     const movies = params.movies;

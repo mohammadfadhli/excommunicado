@@ -1,12 +1,12 @@
 "use client";
 
 import {
+    Button,
+    Checkbox,
     Menu,
     MenuHandler,
-    Button,
-    MenuList,
     MenuItem,
-    Checkbox,
+    MenuList,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 
@@ -94,6 +94,7 @@ export default function FilterList(params) {
     }
 
     return (
+        <div className="mt-5">
         <Menu
             dismiss={{
                 itemPress: false,
@@ -226,5 +227,6 @@ export default function FilterList(params) {
                 </MenuItem>
             </MenuList>
         </Menu>
+        </div>
     );
 }

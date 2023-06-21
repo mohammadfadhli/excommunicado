@@ -18,6 +18,10 @@ export default function Pagination(params) {
         } else if (params.route == "search") {
             setPar("search");
         }
+        else if (params.route == "tvshows") {
+            setPar("tvshows");
+        }
+        
     }, []);
 
     const next = () => {

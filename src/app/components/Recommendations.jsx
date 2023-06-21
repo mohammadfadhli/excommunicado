@@ -4,9 +4,23 @@ import Image from "next/image";
 import { movie_image_url } from "../tmdb_images/movieImage";
 import placeholderimage from "../assets/placeholderimage.png";
 
-async function getData(movieid) {
+async function getMovieData(id) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}/recommendations?api_key=${process.env.TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.TMDB_API_KEY}`
+    );
+
+    // Recommendation: handle errors
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+}
+
+async function getTvData(id) {
+    const res = await fetch(
+        `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${process.env.TMDB_API_KEY}`
     );
 
     // Recommendation: handle errors
@@ -19,7 +33,9 @@ async function getData(movieid) {
 }
 
 export default async function Recommendations(params) {
-    const res = await getData(params.movieid);
+
+    let res = ""
+    let showcards = ""
 
     function HasPicture(params) {
         if (params.moviesrc != null) {
@@ -45,31 +61,65 @@ export default async function Recommendations(params) {
         }
     }
 
-    const movies = res.results.map((movie) => (
-        <Link href={"/movie/" + movie.id} className="contents">
-            <div className="w-[150px] md:w-[200px]">
-                <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
-                    <HasPicture moviesrc={movie.poster_path}></HasPicture>
-                </div>
-                <div className="m-0 py-3">
-                    <h1 className="text-sm font-semibold truncate">
-                        {movie.title}
-                    </h1>
-                    <div className="flex justify-between mt-1">
-                        <h1 className="text-sm font-semibold">
-                            {/* {params.movieyear.slice(0, 4)} */}
-                            {movie.release_date
-                                ? movie.release_date.slice(0, 4)
-                                : "Unknown"}
+    if(params.req == "movie")
+    {
+        res = await getMovieData(params.id)
+
+        showcards = res.results.map((movie) => (
+            <Link href={"/movie/" + movie.id} className="contents">
+                <div className="w-[150px] md:w-[200px]">
+                    <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+                        <HasPicture moviesrc={movie.poster_path}></HasPicture>
+                    </div>
+                    <div className="m-0 py-3">
+                        <h1 className="text-sm font-semibold truncate">
+                            {movie.title}
                         </h1>
-                        <Rating rating={movie.vote_average}></Rating>
+                        <div className="flex justify-between mt-1">
+                            <h1 className="text-sm font-semibold">
+                                {/* {params.movieyear.slice(0, 4)} */}
+                                {movie.release_date
+                                    ? movie.release_date.slice(0, 4)
+                                    : "Unknown"}
+                            </h1>
+                            <Rating rating={movie.vote_average}></Rating>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Link>
-    ));
+            </Link>
+        ));
+    }
+    else
+    {
+        res = await getTvData(params.id)
 
-    if (movies != "") {
+        showcards = res.results.map((tvshow) => (
+            <Link href={"/tvshow/" + tvshow.id} className="contents">
+                <div className="w-[150px] md:w-[200px]">
+                    <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+                        <HasPicture moviesrc={tvshow.poster_path}></HasPicture>
+                    </div>
+                    <div className="m-0 py-3">
+                        <h1 className="text-sm font-semibold truncate">
+                            {tvshow.name}
+                        </h1>
+                        <div className="flex justify-between mt-1">
+                            <h1 className="text-sm font-semibold">
+                                {/* {params.movieyear.slice(0, 4)} */}
+                                {tvshow.first_air_date
+                                    ? tvshow.first_air_date.slice(0, 4)
+                                    : "Unknown"}
+                            </h1>
+                            <Rating rating={tvshow.vote_average}></Rating>
+                        </div>
+                    </div>
+                </div>
+            </Link>
+        ));
+    }
+
+
+    if (showcards != "") {
         return (
             <>
                 <div className="my-5">
@@ -78,7 +128,7 @@ export default async function Recommendations(params) {
                     </div>
 
                     <div className="flex flex-nowrap gap-5 pt-3 overflow-x-scroll">
-                        {movies}
+                        {showcards}
                     </div>
                 </div>
             </>

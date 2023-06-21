@@ -10,9 +10,9 @@ import Recommendations from "@/app/components/Recommendations.jsx";
 import PhotoGallery from "@/app/components/PhotoGallery.jsx";
 import Crew from "@/app/components/Crew.jsx";
 
-async function getData(movieid) {
+async function getData(tvshowid) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`
+        `https://api.themoviedb.org/3/tv/${tvshowid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`
     );
 
     // Recommendation: handle errors
@@ -24,9 +24,9 @@ async function getData(movieid) {
     return res.json();
 }
 
-async function getCredits(movieid) {
+async function getCredits(tvshowid) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}/credits?api_key=${process.env.TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/tv/${tvshowid}/credits?api_key=${process.env.TMDB_API_KEY}`
     );
 
     // Recommendation: handle errors
@@ -61,14 +61,14 @@ function getRating(rating) {
 }
 
 export default async function Page({ params }) {
-    const movie = await getData(params.id);
+    const tvshow = await getData(params.id);
     const credits = await getCredits(params.id);
 
     function HasPicture(params) {
-        if (params.moviesrc != null) {
+        if (params.tvshowsrc != null) {
             return (
                 <Image
-                    src={movie_image_url.large + movie.poster_path}
+                    src={movie_image_url.large + tvshow.poster_path}
                     className="max-w-full md:w-[300px] sm:max-w-full md:h-full sm:max-h-full w-full h-auto rounded-lg object-cover"
                     width={500}
                     height={500}
@@ -93,7 +93,7 @@ export default async function Page({ params }) {
                 <Image
                     src={
                         "https://image.tmdb.org/t/p/original" +
-                        movie.backdrop_path
+                        tvshow.backdrop_path
                     }
                     fill={true}
                     className="object-cover object-top"
@@ -101,10 +101,10 @@ export default async function Page({ params }) {
                 <figcaption className="absolute inset-0 grid h-full w-full place-items-center bg-black/75 p-3">
                     <div className="text-center">
                         <h1 className="text-3xl md:text-5xl lg:text-6xl text-white font-semibold">
-                            {movie.title}
+                            {tvshow.name}
                         </h1>
                         <h1 className="text-xl md:text-2xl lg:text-3xl text-white mt-3">
-                            {movie.tagline}
+                            {tvshow.tagline}
                         </h1>
                     </div>
                 </figcaption>
@@ -113,7 +113,7 @@ export default async function Page({ params }) {
             <div className="container max-w-[1024px] mx-auto p-3">
                 <topcard className="flex flex-col md:flex-row mt-5">
                     <div className="shrink-0">
-                        <HasPicture moviesrc={movie.poster_path}></HasPicture>
+                        <HasPicture tvshowsrc={tvshow.poster_path}></HasPicture>
                     </div>
                     <div className="flex-auto pt-3 md:p-5">
                         <div className="flex flex-col w-full h-full">
@@ -135,31 +135,31 @@ export default async function Page({ params }) {
                                         />
                                     </svg>
                                 </h1>
-                                <h1 className="font-bold">{getRating(movie.vote_average)}</h1>
+                                <h1 className="font-bold">{getRating(tvshow.vote_average)}</h1>
                             </div>
 
                             <h1 className="font-bold mt-3">
-                                Runtime: <span className="font-semibold">{toHoursAndMinutes(movie.runtime)}</span>
+                                Seasons: <span className="font-semibold">{tvshow.number_of_seasons}</span>
                             </h1>
                             <h1 className="font-bold mt-3">
-                                Release Date:{" "}
+                                First Air Date:{" "}
                                 <span className="font-semibold">
                                 <DateFormat
-                                    release_date={movie.release_date}
+                                    release_date={tvshow.first_air_date}
                                 ></DateFormat>
                                 </span>
                             </h1>
                             <div className="flex gap-3 mt-3">
-                                {movie.genres != "" ? movie.genres.slice(0, 3).map((genre) => (
+                                {tvshow.genres != "" ? tvshow.genres.slice(0, 3).map((genre) => (
                                     <div className="bg-blue-700 p-2 rounded-lg text-white text-sm">
                                         {genre.name}
                                     </div>
                                 )) : "No Genres"}
                             </div>
-                            {movie.homepage ? (
+                            {tvshow.homepage ? (
                                 <>
                                     <Link
-                                        href={movie.homepage}
+                                        href={tvshow.homepage}
                                         className="mt-3 hover:text-blue-900"
                                     >
                                         <Button color="green">
@@ -174,23 +174,23 @@ export default async function Page({ params }) {
                             )}
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
-                                {movie.overview != "" ? movie.overview : "No Overview."}
+                                {tvshow.overview != "" ? tvshow.overview : "No Overview."}
                             </p>
                         </div>
                     </div>
                 </topcard>
 
-                <Crew movieid={movie.id} credits={credits.crew}></Crew>
+                <Crew credits={credits.crew}></Crew>
 
-                <Cast movieid={movie.id} credits={credits.cast}></Cast>
+                <Cast credits={credits.cast}></Cast>
 
-                <VideoGallery id={movie.id} req="movie"></VideoGallery>
+                <VideoGallery id={tvshow.id} req="tvshow"></VideoGallery>
 
-                <PhotoGallery id={movie.id} type="backdrops" req="movie"></PhotoGallery>
+                <PhotoGallery id={tvshow.id} type="backdrops" req="tvshow"></PhotoGallery>
 
-                <PhotoGallery id={movie.id} type="posters" req="movie"></PhotoGallery>
+                <PhotoGallery id={tvshow.id} type="posters" req="tvshow"></PhotoGallery>
 
-                <Recommendations id={movie.id} req="movie"></Recommendations>
+                <Recommendations id={tvshow.id} req="tvshow"></Recommendations>
             </div>
         </>
     );

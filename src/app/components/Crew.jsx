@@ -1,38 +1,4 @@
-import profileplaceholderimage from "../assets/profileplaceholderimage.jpeg";
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Tooltip,
-    Avatar,
-} from "../materialui.jsx";
-import Image from "next/image";
-
 export default function Crew(params) {
-    function HasPicture(params) {
-        if (params.profilepicture != null) {
-            return (
-                <img
-                    src={
-                        "https://image.tmdb.org/t/p/w300" +
-                        params.profilepicture
-                    }
-                    alt="profile-picture"
-                    className="object-cover w-full h-full rounded-lg"
-                />
-            );
-        } else {
-            return (
-                <Image
-                    src={profileplaceholderimage}
-                    alt="profile-picture"
-                    className="object-cover w-full h-full rounded-lg"
-                />
-            );
-        }
-    }
 
     let directors = [];
     let writers = [];

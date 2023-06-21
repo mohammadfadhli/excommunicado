@@ -1,6 +1,20 @@
-async function getData(movieid) {
+async function getMovieData(id) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}/videos?api_key=${process.env.TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${process.env.TMDB_API_KEY}`
+    );
+
+    // Recommendation: handle errors
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+}
+
+async function getTvData(id) {
+    const res = await fetch(
+        `https://api.themoviedb.org/3/tv/${id}/videos?api_key=${process.env.TMDB_API_KEY}`
     );
 
     // Recommendation: handle errors
@@ -13,7 +27,16 @@ async function getData(movieid) {
 }
 
 export default async function VideoGallery(params) {
-    const res = await getData(params.movieid);
+    let res = ""
+
+    if(params.req == "movie")
+    {
+        res = await getMovieData(params.id);
+    }
+    else
+    {
+        res = await getTvData(params.id);
+    }
 
     const kk = res.results
         .filter((movie) => movie.type == "Trailer")

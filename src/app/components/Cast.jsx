@@ -1,14 +1,8 @@
+import Image from "next/image";
 import profileplaceholderimage from "../assets/profileplaceholderimage.jpeg";
 import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Tooltip,
-    Avatar,
+    CardBody
 } from "../materialui.jsx";
-import Image from "next/image";
 
 export default function Cast(params) {
     function HasPicture(params) {

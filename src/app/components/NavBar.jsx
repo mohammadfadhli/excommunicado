@@ -73,6 +73,16 @@ export default function Example() {
                 as="li"
                 variant="small"
                 color="white"
+                className="p-1 font-normal"
+            >
+                <Link href={"/tvshows?page=1"} className="flex items-center hover:text-blue-500">
+                    TV
+                </Link>
+            </Typography>
+            <Typography
+                as="li"
+                variant="small"
+                color="white"
                 className="p-1 font-normal "
             >
                 <Link href={"/upcoming?page=1"} className="flex items-center hover:text-blue-500">

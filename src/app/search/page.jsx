@@ -1,17 +1,7 @@
-import Image from "next/image";
-import Link from "next/link";
 import Pagination from "@/app/components/Pagination";
 import SearchBar from "@/app/components/SearchBar";
+import { notFound } from 'next/navigation';
 import MovieGrid from "../components/MovieGrid.jsx";
-import {
-    TypographyCard,
-    Card,
-    CardHeader,
-    CardBody,
-    Typography,
-    Button,
-} from "../materialui.jsx";
-import { notFound } from 'next/navigation'
 
 async function getData(query, page) {
     const res = await fetch(

@@ -1,6 +1,20 @@
-async function getData(movieid) {
+async function getMovieData(id) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}/images?api_key=${process.env.TMDB_API_KEY}&language=en`
+        `https://api.themoviedb.org/3/movie/${id}/images?api_key=${process.env.TMDB_API_KEY}&language=en`
+    );
+
+    // Recommendation: handle errors
+    if (!res.ok) {
+        // This will activate the closest `error.js` Error Boundary
+        throw new Error("Failed to fetch data");
+    }
+
+    return res.json();
+}
+
+async function getTvData(id) {
+    const res = await fetch(
+        `https://api.themoviedb.org/3/tv/${id}/images?api_key=${process.env.TMDB_API_KEY}&language=en`
     );
 
     // Recommendation: handle errors
@@ -13,18 +27,20 @@ async function getData(movieid) {
 }
 
 export default async function PhotoGallery(params) {
-    const images = await getData(params.movieid);
-    const gallerytype = params.type;
 
-    // const carouselImages = images.backdrops
-    //     .slice(0, 5)
-    //     .filter((movie) => movie.iso_639_1 != null)
-    //     .map((img) => (
-    //         <img
-    //             src={"https://image.tmdb.org/t/p/original" + img.file_path}
-    //             className="object-cover"
-    //         ></img>
-    //     ));
+    let images = ""
+
+    if(params.req == "movie")
+    {
+        images = await getMovieData(params.id)
+    }
+    else
+    {
+        images = await getTvData(params.id)
+    }
+
+    // const images = await getMovieData(params.id);
+    const gallerytype = params.type;
 
     let carouselImages = "";
     let title = "";

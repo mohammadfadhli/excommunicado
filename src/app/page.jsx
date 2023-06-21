@@ -7,10 +7,11 @@ export default async function Home() {
         <>
             <div className="container max-w-[1024px] mx-auto p-3" id="wrapper">
                 <SearchBar></SearchBar>
-                <h1 className="font-bold text-xl mt-5">Explore millions of movies.</h1>
+                <h1 className="font-bold text-xl mt-5">Explore millions of movies and TV shows.</h1>
                 <MovieCarousel></MovieCarousel>
-                <HorizontalScrollMovies movietype="popular"></HorizontalScrollMovies>
-                <HorizontalScrollMovies movietype="upcoming"></HorizontalScrollMovies>
+                <HorizontalScrollMovies type="popular" req="movies"></HorizontalScrollMovies>
+                <HorizontalScrollMovies type="upcoming" req="movies"></HorizontalScrollMovies>
+                <HorizontalScrollMovies type="trending" req="tvshows"></HorizontalScrollMovies>
             </div>
         </>
     );

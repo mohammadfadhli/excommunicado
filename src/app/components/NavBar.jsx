@@ -95,7 +95,7 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal "
             >
-                <Link href={""} className="flex items-center hover:text-blue-500">
+                <Link href={"/people?page=1"} className="flex items-center hover:text-blue-500">
                     People
                 </Link>
             </Typography>

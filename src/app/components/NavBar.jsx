@@ -17,7 +17,7 @@ export default function Example() {
     const [search, setSearch] = useState("");
     const [error, setError] = useState(false);
     const [placeholdermsg, setPlaceholderMsg] = useState(
-        "Search a movie..."
+        "Search..."
     );
 
     React.useEffect(() => {
@@ -31,7 +31,7 @@ export default function Example() {
         if (error) {
             const toRef = setTimeout(() => {
                 setError(false);
-                setPlaceholderMsg("Search a movie...");
+                setPlaceholderMsg("Search...");
                 clearTimeout(toRef);
             }, 1500);
         }

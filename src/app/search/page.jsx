@@ -2,10 +2,13 @@ import Pagination from "@/app/components/Pagination";
 import SearchBar from "@/app/components/SearchBar";
 import { notFound } from 'next/navigation';
 import MovieGrid from "../components/MovieGrid.jsx";
+import SearchGrid from "../components/SearchGrid.jsx";
 
 async function getData(query, page) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${process.env.TMDB_API_KEY}&page=${page}`
+        // `https://api.themoviedb.org/3/search/movie?query=${query}&api_key=${process.env.TMDB_API_KEY}&page=${page}`
+        `
+        https://api.themoviedb.org/3/search/multi?query=${query}&api_key=${process.env.TMDB_API_KEY}&page=${page}`
     );
 
     if (!res.ok) {
@@ -19,12 +22,9 @@ async function getData(query, page) {
 export default async function Page({ searchParams }) {
     const userquery = searchParams.query; // get user query from url
 
-    console.log(userquery);
-
     const page = searchParams.page; // get page number from url
 
     const res = await getData(userquery, page);
-
 
     if (page > res.total_pages || userquery === "undefined" || userquery === "") {
         // if user manually enters a page number that is greater than the total pages, return error
@@ -49,7 +49,8 @@ export default async function Page({ searchParams }) {
                     route="search"
                 ></Pagination>
 
-                <MovieGrid movies={res.results}></MovieGrid>
+                {/* <MovieGrid movies={res.results}></MovieGrid> */}
+                <SearchGrid media={res.results}></SearchGrid>
 
                 <Pagination
                     totalpages={res.total_pages}

@@ -42,7 +42,7 @@ export default function Example() {
         // console.log(encodeURIComponent(search.trim()));
         if (search) {
             if (search.trim().length != 0) {
-                window.location.href = `/search/?query=${encodeURIComponent(
+                window.location.href = `/search/movies?query=${encodeURIComponent(
                     search.trim()
                 )}&page=1`;
             } else {

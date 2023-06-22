@@ -1,3 +1,5 @@
+
+
 import Image from "next/image";
 import placeholderimage from "../assets/placeholderimage.png";
 import Link from "next/link";
@@ -5,6 +7,9 @@ import Rating from "./Rating";
 
 export default function SearchGrid(params) {
     const media = params.media;
+    const mediatype = params.type;
+
+    console.log(mediatype)
 
     function HasPicture(params) {
         if (params.mediasrc != null) {
@@ -31,7 +36,7 @@ export default function SearchGrid(params) {
     }
 
     function CheckType(params) {
-        if (params.media.media_type == "movie") {
+        if (params.ctype == "movies") {
             return (
                 <>
                     <Link
@@ -66,7 +71,7 @@ export default function SearchGrid(params) {
                 </>
             );
         }
-        else if(params.media.media_type == "tv")
+        else if(params.ctype == "tvshows")
         {
             return (
                 <>
@@ -102,7 +107,7 @@ export default function SearchGrid(params) {
                 </>
             );
         }
-        else if(params.media.media_type == "person")
+        else if(params.ctype == "people")
         {
             return (
                 <>
@@ -142,7 +147,7 @@ export default function SearchGrid(params) {
     }
 
     const mediaCards = media.map((movie) => (
-        <CheckType media={movie}></CheckType>
+        <CheckType media={movie} ctype={mediatype}></CheckType>
     ));
 
     return (

@@ -1,8 +1,7 @@
 "use client";
 
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/24/outline";
 import { IconButton, Typography } from "@material-tailwind/react";
-import { ArrowRightIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
-import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Pagination(params) {
@@ -14,8 +13,12 @@ export default function Pagination(params) {
             setPar("movies");
         } else if (params.route == "upcomingmovies") {
             setPar("upcoming");
-        } else if (params.route == "search") {
-            setPar("search");
+        } else if (params.route == "search/movies") {
+            setPar("search/movies");
+        } else if (params.route == "search/tvshows") {
+            setPar("search/tvshows");
+        } else if (params.route == "search/people") {
+            setPar("search/people");
         } else if (params.route == "tvshows") {
             setPar("tvshows");
         } else if (params.route == "people") {

@@ -15,10 +15,11 @@ import {
     Accordion,
     AccordionHeader,
     AccordionBody,
-    Input
+    Input,
+    IconButton 
 } from "@material-tailwind/react";
 
 export { Card, CardHeader, CardBody, CardFooter, Typography, Button, ButtonGroup, Carousel, Chip,
     Accordion,
     AccordionHeader,
-    AccordionBody, Avatar, Input, Alert};
+    AccordionBody, Avatar, Input, Alert, IconButton };

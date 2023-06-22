@@ -90,14 +90,15 @@ export default async function Page({ params }) {
                 className=""
                 style={{ position: "relative", width: "100%", height: 500 }}
             >
-                <Image
+                {movie.backdrop_path ? <Image
                     src={
                         "https://image.tmdb.org/t/p/original" +
                         movie.backdrop_path
                     }
                     fill={true}
                     className="object-cover object-top"
-                ></Image>
+                ></Image> : ""}
+                
                 <figcaption className="absolute inset-0 grid h-full w-full place-items-center bg-black/75 p-3">
                     <div className="text-center">
                         <h1 className="text-3xl md:text-5xl lg:text-6xl text-white font-semibold">

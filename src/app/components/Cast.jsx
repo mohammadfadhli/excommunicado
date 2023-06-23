@@ -32,7 +32,7 @@ export default function Cast(params) {
     const castCards = params.credits.slice(0, 12).map((person) => (
         <>
         <Link href={"/person/" + person.id}>
-            <div className="w-[150px] bg-[#282828] rounded-xl shadow-md transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
+            <div className="w-[150px] h-full bg-[#282828] rounded-xl shadow-md transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
                 <div
                     floated={false}
                     className="m-0 w-[150px] h-[200px] rounded-lg"

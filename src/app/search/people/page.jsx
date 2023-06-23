@@ -34,7 +34,7 @@ export default async function Page({ searchParams }) {
             <div className="container max-w-[1024px] mx-auto p-3" id="wrapper">
                 <SearchBar query={userquery}></SearchBar>
 
-                <SearchButtonGroup query={searchParams.query}></SearchButtonGroup>
+                <SearchButtonGroup query={searchParams.query} route="search/people"></SearchButtonGroup>
 
                 <div className="container mt-5">
                     <h1 className="font-bold mt-5">
@@ -56,7 +56,7 @@ export default async function Page({ searchParams }) {
                     totalpages={res.total_pages}
                     query={searchParams.query}
                     currentpage={page}
-                    route="search"
+                    route="search/people"
                 ></Pagination>
             </div>
         </>

@@ -126,7 +126,7 @@ export default async function HorizontalScrollMovies(params) {
                 <>
                     <Link
                         href={"/movies?page=1"}
-                        className="font-bold text-base underline hover:text-blue-500"
+                        className="font-bold text-sm underline hover:text-blue-500"
                     >
                         View all
                     </Link>
@@ -139,7 +139,7 @@ export default async function HorizontalScrollMovies(params) {
             return (
                 <Link
                     href={"/" + params.type + "?page=1"}
-                    className="font-bold text-base underline hover:text-blue-500"
+                    className="font-bold text-sm underline hover:text-blue-500"
                 >
                     View all
                 </Link>
@@ -149,7 +149,7 @@ export default async function HorizontalScrollMovies(params) {
         return (
             <Link
                 href={"/" + "tvshows" + "?page=1"}
-                className="font-bold text-base underline hover:text-blue-500"
+                className="font-bold text-sm underline hover:text-blue-500"
             >
                 View all
             </Link>

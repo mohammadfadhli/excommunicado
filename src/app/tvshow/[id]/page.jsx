@@ -39,17 +39,14 @@ async function getCredits(tvshowid) {
 }
 
 function toHoursAndMinutes(totalMinutes) {
-
-    if(totalMinutes != "")
-    {
+    if (totalMinutes != "") {
         const hours = Math.floor(totalMinutes / 60);
         const minutes = totalMinutes % 60;
-    
+
         return `${hours}h ${minutes}m`;
     }
 
-    return "Unknown"
-    
+    return "Unknown";
 }
 
 function getRating(rating) {
@@ -63,6 +60,9 @@ function getRating(rating) {
 export default async function Page({ params }) {
     const tvshow = await getData(params.id);
     const credits = await getCredits(params.id);
+    let tvshowgenres = [];
+
+    tvshow.genres.map((genre) => tvshowgenres.push(genre.name));
 
     function HasPicture(params) {
         if (params.tvshowsrc != null) {
@@ -135,27 +135,34 @@ export default async function Page({ params }) {
                                         />
                                     </svg>
                                 </h1>
-                                <h1 className="font-bold">{getRating(tvshow.vote_average)}</h1>
+                                <h1 className="font-bold">
+                                    {getRating(tvshow.vote_average)}
+                                </h1>
                             </div>
 
                             <h1 className="font-bold mt-3">
-                                Seasons: <span className="font-semibold">{tvshow.number_of_seasons}</span>
+                                Seasons:{" "}
+                                <span className="font-semibold">
+                                    {tvshow.number_of_seasons}
+                                </span>
                             </h1>
                             <h1 className="font-bold mt-3">
                                 First Air Date:{" "}
                                 <span className="font-semibold">
-                                <DateFormat
-                                    release_date={tvshow.first_air_date}
-                                ></DateFormat>
+                                    <DateFormat
+                                        release_date={tvshow.first_air_date}
+                                    ></DateFormat>
                                 </span>
                             </h1>
-                            <div className="flex gap-3 mt-3">
-                                {tvshow.genres != "" ? tvshow.genres.slice(0, 3).map((genre) => (
-                                    <div className="bg-blue-700 p-2 rounded-lg text-white text-sm">
-                                        {genre.name}
+                            {tvshowgenres.length != 0 ? (
+                                <>
+                                    <div className="mt-3">
+                                        <span class="font-bold">Genres:</span> {tvshowgenres.join(", ")}
                                     </div>
-                                )) : "No Genres"}
-                            </div>
+                                </>
+                            ) : (
+                                ""
+                            )}
                             {tvshow.homepage ? (
                                 <>
                                     <Link
@@ -174,7 +181,9 @@ export default async function Page({ params }) {
                             )}
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
-                                {tvshow.overview != "" ? tvshow.overview : "No Overview."}
+                                {tvshow.overview != ""
+                                    ? tvshow.overview
+                                    : "No Overview."}
                             </p>
                         </div>
                     </div>
@@ -186,9 +195,17 @@ export default async function Page({ params }) {
 
                 <VideoGallery id={tvshow.id} req="tvshow"></VideoGallery>
 
-                <PhotoGallery id={tvshow.id} type="backdrops" req="tvshow"></PhotoGallery>
+                <PhotoGallery
+                    id={tvshow.id}
+                    type="backdrops"
+                    req="tvshow"
+                ></PhotoGallery>
 
-                <PhotoGallery id={tvshow.id} type="posters" req="tvshow"></PhotoGallery>
+                <PhotoGallery
+                    id={tvshow.id}
+                    type="posters"
+                    req="tvshow"
+                ></PhotoGallery>
 
                 <Recommendations id={tvshow.id} req="tvshow"></Recommendations>
             </div>

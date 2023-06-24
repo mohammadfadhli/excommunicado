@@ -63,6 +63,9 @@ function getRating(rating) {
 export default async function Page({ params }) {
     const movie = await getData(params.id);
     const credits = await getCredits(params.id);
+    let moviegenres = [];
+
+    movie.genres.map((genre) => moviegenres.push(genre.name));
 
     function HasPicture(params) {
         if (params.moviesrc != null) {
@@ -150,13 +153,15 @@ export default async function Page({ params }) {
                                 ></DateFormat>
                                 </span>
                             </h1>
-                            <div className="flex gap-3 mt-3">
-                                {movie.genres != "" ? movie.genres.slice(0, 3).map((genre) => (
-                                    <div className="bg-blue-700 p-2 rounded-lg text-white text-sm">
-                                        {genre.name}
+                            {moviegenres.length != 0 ? (
+                                <>
+                                    <div className="mt-3">
+                                        <span class="font-bold">Genres:</span> {moviegenres.join(", ")}
                                     </div>
-                                )) : "No Genres"}
-                            </div>
+                                </>
+                            ) : (
+                                ""
+                            )}
                             {movie.homepage ? (
                                 <>
                                     <Link

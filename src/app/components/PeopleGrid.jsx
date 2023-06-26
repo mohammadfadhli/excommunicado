@@ -13,7 +13,8 @@ export default function PeopleGrid(params){
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
                             src={
-                                "https://image.tmdb.org/t/p/w300" +
+                                // "https://image.tmdb.org/t/p/w300" +
+                                "https://image.tmdb.org/t/p/original" +
                                 params.personsrc
                             }
                             alt="nature image"

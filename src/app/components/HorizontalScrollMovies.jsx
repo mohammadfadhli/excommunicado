@@ -170,8 +170,8 @@ export default async function HorizontalScrollMovies(params) {
 
     return (
         <>
-            <div className="my-5">
-                <section className="container flex justify-between">
+            <div className="my-5 w-full">
+                <section className="flex justify-between">
                     <h2 className="font-bold text-base">
                         {params.type == "popular" ? "Popular" : ""}{" "}
                         {params.type == "upcoming" ? "Upcoming" : ""}{" "}

@@ -15,7 +15,7 @@ export default function SearchGrid(params) {
         if (params.mediasrc != null) {
             return (
                 <Image
-                    className="h-full w-full max-h-[285px] rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
+                    className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
                     src={"https://image.tmdb.org/t/p/w342" + params.mediasrc}
                     alt="nature image"
                     width={500}

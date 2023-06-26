@@ -5,9 +5,27 @@ import { movie_image_url } from "../tmdb_images/movieImage.js";
 import Rating from "./Rating.jsx";
 
 async function getData(type) {
-    const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${type}?api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}`
-    );
+    let res = "";
+
+    if (type == "upcoming") {
+        const d = new Date();
+
+        const date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+        const todaysdate = date.toISOString().split("T")[0];
+
+        const max_date = "2023-07-30";
+        const min_date = todaysdate;
+        res = await fetch(
+            `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&primary_release_date.gte=${min_date}&primary_release_date.lte=${max_date}&sort_by=primary_release_date.asc&with_release_type=3&api_key=${process.env.TMDB_API_KEY}&page=1&region=${process.env.TMDB_REGION}`
+        );
+    } else {
+        // res = await fetch(
+        //     `https://api.themoviedb.org/3/movie/${type}?api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}`
+        // );
+        res = await fetch(
+            `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}&page=1`
+        );
+    }
 
     // Recommendation: handle errors
     if (!res.ok) {
@@ -33,10 +51,9 @@ async function getTvData(type) {
 }
 
 export default async function HorizontalScrollMovies(params) {
-
-    let movies = ""
-    let showcards = ""
-    let res = ""
+    let movies = "";
+    let showcards = "";
+    let res = "";
 
     function HasPicture(params) {
         if (params.moviesrc != null) {
@@ -62,8 +79,7 @@ export default async function HorizontalScrollMovies(params) {
         }
     }
 
-    if(params.req == "movies")
-    {
+    if (params.req == "movies") {
         res = await getData(params.type);
 
         showcards = res.results.map((movie) => (
@@ -89,10 +105,7 @@ export default async function HorizontalScrollMovies(params) {
                 </div>
             </Link>
         ));
-
-    }
-    else
-    {
+    } else {
         res = await getTvData(params.type);
 
         showcards = res.results.map((tvshow) => (
@@ -134,8 +147,7 @@ export default async function HorizontalScrollMovies(params) {
             );
         }
 
-        if(params.type == "upcoming")
-        {
+        if (params.type == "upcoming") {
             return (
                 <Link
                     href={"/" + params.type + "?page=1"}
@@ -154,18 +166,17 @@ export default async function HorizontalScrollMovies(params) {
                 View all
             </Link>
         );
-        
     }
 
     return (
         <>
             <div className="my-5">
-                <section className="container mx-auto flex justify-between">
+                <section className="container flex justify-between">
                     <h2 className="font-bold text-base">
                         {params.type == "popular" ? "Popular" : ""}{" "}
                         {params.type == "upcoming" ? "Upcoming" : ""}{" "}
-                        {params.type == "trending" ? "Trending": ""}{" "}
-                        {params.req == "movies"  ? "Movies" : "TV Shows"}
+                        {params.type == "trending" ? "Trending" : ""}{" "}
+                        {params.req == "movies" ? "Movies" : "TV Shows"}
                     </h2>
                     <CheckPath></CheckPath>
                 </section>

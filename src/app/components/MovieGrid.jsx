@@ -14,7 +14,8 @@ export default function MovieGrid(params) {
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
                             src={
-                                "https://image.tmdb.org/t/p/w342" +
+                                // "https://image.tmdb.org/t/p/w342" +
+                                "https://image.tmdb.org/t/p/w500" +
                                 params.moviesrc
                             }
                             alt="nature image"

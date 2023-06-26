@@ -99,7 +99,7 @@ export default async function Page({ params }) {
                     <div className="flex gap-3 mt-3">
                         {params.instagram ? (
                             <Link
-                                href={`https://www.instagram.com/${params.instagram}`} aria-label="instagram"
+                                href={`https://www.instagram.com/${params.instagram}`} aria-label="instagram" title="Instagram"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +117,7 @@ export default async function Page({ params }) {
                         )}
                         {params.twitter ? (
                             <Link
-                                href={`https://www.twitter.com/${params.twitter}`} aria-label="twitter"
+                                href={`https://www.twitter.com/${params.twitter}`} aria-label="twitter" title="Twitter"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +135,7 @@ export default async function Page({ params }) {
                         )}
                         {params.facebook ? (
                             <Link
-                                href={`https://www.facebook.com/${params.facebook}`} aria-label="facebook"
+                                href={`https://www.facebook.com/${params.facebook}`} aria-label="facebook" title="Facebook"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -153,7 +153,7 @@ export default async function Page({ params }) {
                         )}
                         {params.tiktok ? (
                             <Link
-                                href={`https://www.tiktok.com/@${params.tiktok}`} aria-label="tiktok"
+                                href={`https://www.tiktok.com/@${params.tiktok}`} aria-label="tiktok" title="Tiktok"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

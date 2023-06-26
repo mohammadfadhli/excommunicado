@@ -70,7 +70,7 @@ export default async function PhotoGallery(params) {
         carouselImages = images[gallerytype]
             .slice(0, 5)
             .map((img) => (
-                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank">
+                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank" title="View Original">
                 <img
                     src={"https://image.tmdb.org/t/p/original" + img.file_path}
                     className="object-cover rounded-lg"
@@ -83,7 +83,7 @@ export default async function PhotoGallery(params) {
         carouselImages = images[gallerytype]
             .slice(0, 5)
             .map((img) => (
-                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank">
+                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank" title="View Original">
                 <img
                     src={"https://image.tmdb.org/t/p/original" + img.file_path}
                     className="object-cover rounded-lg w-[250px]"
@@ -98,7 +98,7 @@ export default async function PhotoGallery(params) {
         carouselImages = images[gallerytype]
             .slice(1, 6)
             .map((img) => (
-                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank">
+                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank" title="View Original">
                 <Image
                     src={"https://image.tmdb.org/t/p/w300" + img.file_path}
                     className="object-cover rounded-lg w-[250px] h-[300px]"

@@ -157,7 +157,8 @@ export default async function Page({ params }) {
                             {tvshowgenres.length != 0 ? (
                                 <>
                                     <div className="mt-3">
-                                        <span class="font-bold">Genres:</span> {tvshowgenres.join(", ")}
+                                        <span class="font-bold">Genres:</span>{" "}
+                                        {tvshowgenres.join(", ")}
                                     </div>
                                 </>
                             ) : (
@@ -165,16 +166,26 @@ export default async function Page({ params }) {
                             )}
                             {tvshow.homepage ? (
                                 <>
-                                    <Link
-                                        href={tvshow.homepage}
-                                        className="mt-3 hover:text-blue-900"
-                                    >
-                                        {tvshow.homepage}
-                                    </Link>
+                                    <div className="mt-3">
+                                        <span class="font-bold">
+                                            Homepage:{" "}
+                                        </span>
+                                        <Link
+                                            href={tvshow.homepage}
+                                            className=" hover:text-blue-500"
+                                        >
+                                            {tvshow.homepage}
+                                        </Link>
+                                    </div>
                                 </>
                             ) : (
                                 <>
-                                    <p className="mt-3">No Website</p>
+                                    <div className="mt-3">
+                                        <span class="font-bold">
+                                            Homepage:{" "}
+                                        </span>
+                                        No Website
+                                    </div>
                                 </>
                             )}
                             <div className="mt-3">

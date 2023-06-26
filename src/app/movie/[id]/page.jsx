@@ -182,16 +182,27 @@ export default async function Page({ params }) {
                             )}
                             {movie.homepage ? (
                                 <>
-                                    <Link
+                                <div className="mt-3">
+                                        <span class="font-bold">
+                                            Homepage:{" "}
+                                        </span>
+                                        <Link
                                         href={movie.homepage}
-                                        className="mt-3 hover:text-blue-900"
+                                        className=" hover:text-blue-500"
                                     >
                                         {movie.homepage}
                                     </Link>
+                                    </div>
+                                    
                                 </>
                             ) : (
                                 <>
-                                    <p className="mt-3">No Website</p>
+                                    <div className="mt-3">
+                                        <span class="font-bold">
+                                            Homepage:{" "}
+                                        </span>
+                                        No Website
+                                    </div>
                                 </>
                             )}
                             <div className="mt-3">

@@ -1,14 +1,8 @@
-import Image from "next/image";
-import Cast from "@/app/components/Cast.jsx";
-import { movie_image_url } from "@/app/tmdb_images/movieImage.js";
-import Link from "next/link.js";
-import { Button, IconButton } from "../../materialui.jsx";
-import DateFormat from "@/app/helper/DateFormat.jsx";
-import placeholderimage from "../../assets/placeholderimage.png";
-import VideoGallery from "@/app/components/VideoGallery.jsx";
-import Recommendations from "@/app/components/Recommendations.jsx";
 import PhotoGallery from "@/app/components/PhotoGallery.jsx";
-import Crew from "@/app/components/Crew.jsx";
+import DateFormat from "@/app/helper/DateFormat.jsx";
+import Image from "next/image";
+import Link from "next/link.js";
+import placeholderimage from "../../assets/placeholderimage.png";
 
 async function getData(id) {
     const res = await fetch(
@@ -24,19 +18,6 @@ async function getData(id) {
     return res.json();
 }
 
-async function getImages(id) {
-    const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.TMDB_API_KEY}`
-    );
-
-    // Recommendation: handle errors
-    if (!res.ok) {
-        // This will activate the closest `error.js` Error Boundary
-        throw new Error("Failed to fetch data");
-    }
-
-    return res.json();
-}
 
 async function getSocials(id) {
     const res = await fetch(

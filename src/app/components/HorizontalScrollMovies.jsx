@@ -83,27 +83,43 @@ export default async function HorizontalScrollMovies(params) {
         res = await getData(params.type);
 
         showcards = res.results.map((movie) => (
-            <Link href={"/movie/" + movie.id} className="contents">
-                <div className="w-[150px] md:w-[200px]">
-                    <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+            <div className="w-[150px] md:w-[200px]">
+                <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px] relative">
+                    <Link href={"/movie/" + movie.id} className="contents">
                         <HasPicture moviesrc={movie.poster_path}></HasPicture>
+                    </Link>
+                    <div className="absolute top-0 right-0">
+                        <form>
+                            <input
+                                type="checkbox"
+                                id={movie.id}
+                                name={movie.id}
+                                value={movie.id}
+                            />
+                        </form>
                     </div>
-                    <div className="m-0 py-3">
+                </div>
+
+                <div className="m-0 py-3">
+                    <Link
+                        href={"/movie/" + movie.id}
+                        className="hover:text-blue-500"
+                    >
                         <h1 className="text-sm font-semibold truncate">
                             {movie.title}
                         </h1>
-                        <div className="flex justify-between mt-1">
-                            <h1 className="text-sm font-semibold">
-                                {/* {params.movieyear.slice(0, 4)} */}
-                                {movie.release_date
-                                    ? movie.release_date.slice(0, 4)
-                                    : "Unknown"}
-                            </h1>
-                            <Rating rating={movie.vote_average}></Rating>
-                        </div>
+                    </Link>
+                    <div className="flex justify-between mt-1">
+                        <h1 className="text-sm font-semibold">
+                            {/* {params.movieyear.slice(0, 4)} */}
+                            {movie.release_date
+                                ? movie.release_date.slice(0, 4)
+                                : "Unknown"}
+                        </h1>
+                        <Rating rating={movie.vote_average}></Rating>
                     </div>
                 </div>
-            </Link>
+            </div>
         ));
     } else {
         res = await getTvData(params.type);

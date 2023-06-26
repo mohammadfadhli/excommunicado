@@ -63,7 +63,16 @@ function getRating(rating) {
 export default async function Page({ params }) {
     const movie = await getData(params.id);
     const credits = await getCredits(params.id);
+    let us_release_date = ""
     let moviegenres = [];
+
+    const us_release_dates = movie.release_dates.results.filter(country => country["iso_3166_1"] == "US");
+
+    if(us_release_dates.length != 0)
+    {
+        us_release_date = us_release_dates[0].release_dates.filter(usdate => usdate.type == 3)
+    }
+    
 
     movie.genres.map((genre) => moviegenres.push(genre.name));
 
@@ -148,9 +157,9 @@ export default async function Page({ params }) {
                             <h1 className="font-bold mt-3">
                                 Release Date:{" "}
                                 <span className="font-semibold">
-                                <DateFormat
+                                {us_release_date.length != 0 ? <DateFormat release_date={us_release_date[0].release_date}></DateFormat> : <DateFormat
                                     release_date={movie.release_date}
-                                ></DateFormat>
+                                ></DateFormat>}
                                 </span>
                             </h1>
                             {moviegenres.length != 0 ? (
@@ -182,6 +191,8 @@ export default async function Page({ params }) {
                             <p className="mt-3 grow text-ellipsis text-base">
                                 {movie.overview != "" ? movie.overview : "No Overview."}
                             </p>
+                            {/* <DateFormat release_date={us_release_date[0].release_date}></DateFormat> */}
+                            
                         </div>
                     </div>
                 </topcard>

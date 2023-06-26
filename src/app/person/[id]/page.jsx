@@ -256,7 +256,7 @@ export default async function Page({ params }) {
                             <h1 className="font-bold mt-3">
                                 Place of Birth:{" "}
                                 <span className="font-semibold">
-                                    {person.place_of_birth}
+                                    {person.place_of_birth ? <>{person.place_of_birth}</> : "Unknown"}
                                 </span>
                             </h1>
 

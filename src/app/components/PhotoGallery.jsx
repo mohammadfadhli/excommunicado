@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 async function getMovieData(id) {
     const res = await fetch(
@@ -69,10 +70,12 @@ export default async function PhotoGallery(params) {
         carouselImages = images[gallerytype]
             .slice(0, 5)
             .map((img) => (
+                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank">
                 <img
                     src={"https://image.tmdb.org/t/p/original" + img.file_path}
                     className="object-cover rounded-lg"
                 ></img>
+                </Link>
             ));
 
         title = "Backdrops";
@@ -80,10 +83,12 @@ export default async function PhotoGallery(params) {
         carouselImages = images[gallerytype]
             .slice(0, 5)
             .map((img) => (
+                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank">
                 <img
                     src={"https://image.tmdb.org/t/p/original" + img.file_path}
                     className="object-cover rounded-lg w-[250px]"
                 ></img>
+                </Link>
             ));
 
         title = "Posters";
@@ -93,12 +98,14 @@ export default async function PhotoGallery(params) {
         carouselImages = images[gallerytype]
             .slice(1, 6)
             .map((img) => (
+                <Link href={"https://www.themoviedb.org/t/p/original" + img.file_path} className="contents" target="_blank">
                 <Image
                     src={"https://image.tmdb.org/t/p/w300" + img.file_path}
                     className="object-cover rounded-lg w-[250px] h-[300px]"
                     width={250}
                     height={300}
                 ></Image>
+                </Link>
             ));
 
         title = "Profile Pictures";

@@ -69,7 +69,8 @@ export default async function Page({ params }) {
             return (
                 <Image
                     src={
-                        "https://image.tmdb.org/t/p/w300" + person.profile_path
+                        // "https://image.tmdb.org/t/p/w300" + person.profile_path
+                        "https://image.tmdb.org/t/p/original" + person.profile_path
                     }
                     className="max-w-full md:w-[300px] sm:max-w-full md:h-full sm:max-h-full w-full h-auto rounded-lg object-cover"
                     width={500}
@@ -98,7 +99,7 @@ export default async function Page({ params }) {
                     <div className="flex gap-3 mt-3">
                         {params.instagram ? (
                             <Link
-                                href={`https://www.instagram.com/${params.instagram}`}
+                                href={`https://www.instagram.com/${params.instagram}`} aria-label="instagram"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -116,7 +117,7 @@ export default async function Page({ params }) {
                         )}
                         {params.twitter ? (
                             <Link
-                                href={`https://www.twitter.com/${params.twitter}`}
+                                href={`https://www.twitter.com/${params.twitter}`} aria-label="twitter"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -134,7 +135,7 @@ export default async function Page({ params }) {
                         )}
                         {params.facebook ? (
                             <Link
-                                href={`https://www.facebook.com/${params.facebook}`}
+                                href={`https://www.facebook.com/${params.facebook}`} aria-label="facebook"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +153,7 @@ export default async function Page({ params }) {
                         )}
                         {params.tiktok ? (
                             <Link
-                                href={`https://www.tiktok.com/@${params.tiktok}`} className="" aria-label="tiktok"
+                                href={`https://www.tiktok.com/@${params.tiktok}`} aria-label="tiktok"
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -196,7 +197,7 @@ export default async function Page({ params }) {
                             personsrc={person.profile_path}
                         ></HasPicture>
                     </div>
-                    <div className="flex-auto pt-3 md:p-5">
+                    <div className="flex-auto pt-5 md:p-5">
                         <div className="flex flex-col w-full h-full">
                             <div className="flex gap-1">
                                 <h1>
@@ -272,30 +273,6 @@ export default async function Page({ params }) {
                                 facebook={socials.facebook_id}
                                 tiktok={socials.tiktok_id}
                             ></HasSocials>
-
-                            {/* <div className="flex gap-3 mt-3">
-                                {person.genres != "" ? person.genres.slice(0, 3).map((genre) => (
-                                    <div className="bg-blue-700 p-2 rounded-lg text-white text-sm">
-                                        {genre.name}
-                                    </div>
-                                )) : "No Genres"}
-                            </div> */}
-                            {/* {person.homepage ? (
-                                <>
-                                    <Link
-                                        href={person.homepage}
-                                        className="mt-3 hover:text-blue-900"
-                                    >
-                                        <Button color="green">
-                                            Visit Homepage
-                                        </Button>
-                                    </Link>
-                                </>
-                            ) : (
-                                <>
-                                    <p className="mt-3">No Website</p>
-                                </>
-                            )} */}
                         </div>
                     </div>
                 </topcard>

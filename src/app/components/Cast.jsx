@@ -59,9 +59,14 @@ export default function Cast(params) {
             <>
                 <div className="my-5">
                     <h1 className="font-bold">Main Cast</h1>
-                    <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
+                    {params.credits.slice(0, 12).length > 11 ? <div className="flex flex-nowrap gap-5 overflow-x-auto py-3">
                         {castCards}
-                    </div>
+                    </div> : <div className="flex flex-nowrap gap-5 overflow-x-auto pt-3">
+                        {castCards}
+                    </div>}
+                    {/* <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
+                        {castCards}
+                    </div> */}
                 </div>
             </>
         );

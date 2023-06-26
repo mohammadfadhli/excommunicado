@@ -43,19 +43,16 @@ export default async function VideoGallery(params) {
 
     const vids = kk.map((vid) => (
         <>
-            {/* <div className="w-[560px] h-[315px] rounded-lg"> */}
                 <iframe
                     src={`https://www.youtube.com/embed/${vid.key}`}
                     title="YouTube video player"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     allowFullScreen
-                    // className="w-[560px] h-[315px] rounded-lg"\
-                    width="100%"
+                    width="560"
                     height="315"
-                    className="aspect-video rounded-lg"
+                    className="aspect-video rounded-lg max-w-full"
                 ></iframe>
-            {/* </div> */}
         </>
     ));
 
@@ -73,9 +70,6 @@ export default async function VideoGallery(params) {
                             {vids}
                         </div>
                     )}
-                    {/* <div className="flex flex-nowrap gap-5 overflow-x-scroll py-3">
-                        {vids}
-                    </div> */}
                 </div>
             </>
         );

@@ -39,17 +39,14 @@ async function getCredits(movieid) {
 }
 
 function toHoursAndMinutes(totalMinutes) {
-
-    if(totalMinutes != "")
-    {
+    if (totalMinutes != "") {
         const hours = Math.floor(totalMinutes / 60);
         const minutes = totalMinutes % 60;
-    
+
         return `${hours}h ${minutes}m`;
     }
 
-    return "Unknown"
-    
+    return "Unknown";
 }
 
 function getRating(rating) {
@@ -72,7 +69,6 @@ export default async function Page({ params }) {
     // {
     //     us_release_date = us_release_dates[0].release_dates.filter(usdate => usdate.type == 3)
     // }
-    
 
     movie.genres.map((genre) => moviegenres.push(genre.name));
 
@@ -102,15 +98,19 @@ export default async function Page({ params }) {
                 className=""
                 style={{ position: "relative", width: "100%", height: 500 }}
             >
-                {movie.backdrop_path ? <Image
-                    src={
-                        "https://image.tmdb.org/t/p/original" +
-                        movie.backdrop_path
-                    }
-                    fill={true}
-                    className="object-cover object-top"
-                ></Image> : ""}
-                
+                {movie.backdrop_path ? (
+                    <Image
+                        src={
+                            "https://image.tmdb.org/t/p/original" +
+                            movie.backdrop_path
+                        }
+                        fill={true}
+                        className="object-cover object-top"
+                    ></Image>
+                ) : (
+                    ""
+                )}
+
                 <figcaption className="absolute inset-0 grid h-full w-full place-items-center bg-black/75 p-3">
                     <div className="text-center">
                         <h1 className="text-3xl md:text-5xl lg:text-6xl text-white font-semibold">
@@ -148,27 +148,33 @@ export default async function Page({ params }) {
                                         />
                                     </svg>
                                 </h1>
-                                <h1 className="font-bold">{getRating(movie.vote_average)}</h1>
+                                <h1 className="font-bold">
+                                    {getRating(movie.vote_average)}
+                                </h1>
                             </div>
 
                             <h1 className="font-bold mt-3">
-                                Runtime: <span className="font-semibold">{toHoursAndMinutes(movie.runtime)}</span>
+                                Runtime:{" "}
+                                <span className="font-semibold">
+                                    {toHoursAndMinutes(movie.runtime)}
+                                </span>
                             </h1>
                             <h1 className="font-bold mt-3">
                                 Release Date:{" "}
                                 <span className="font-semibold">
-                                {/* {us_release_date.length != 0 ? <DateFormat release_date={us_release_date[0].release_date}></DateFormat> : <DateFormat
+                                    {/* {us_release_date.length != 0 ? <DateFormat release_date={us_release_date[0].release_date}></DateFormat> : <DateFormat
                                     release_date={movie.release_date}
                                 ></DateFormat>} */}
-                                <DateFormat
-                                    release_date={movie.release_date}
-                                ></DateFormat>
+                                    <DateFormat
+                                        release_date={movie.release_date}
+                                    ></DateFormat>
                                 </span>
                             </h1>
                             {moviegenres.length != 0 ? (
                                 <>
                                     <div className="mt-3">
-                                        <span class="font-bold">Genres:</span> {moviegenres.join(", ")}
+                                        <span class="font-bold">Genres:</span>{" "}
+                                        {moviegenres.join(", ")}
                                     </div>
                                 </>
                             ) : (
@@ -180,9 +186,7 @@ export default async function Page({ params }) {
                                         href={movie.homepage}
                                         className="mt-3 hover:text-blue-900"
                                     >
-                                        <Button color="green">
-                                            Visit Homepage
-                                        </Button>
+                                        {movie.homepage}
                                     </Link>
                                 </>
                             ) : (
@@ -190,11 +194,15 @@ export default async function Page({ params }) {
                                     <p className="mt-3">No Website</p>
                                 </>
                             )}
+                            <div className="mt-3">
+                                <Button color="green">Add to Favourites</Button>
+                            </div>
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
-                                {movie.overview != "" ? movie.overview : "No Overview."}
+                                {movie.overview != ""
+                                    ? movie.overview
+                                    : "No Overview."}
                             </p>
-                            
                         </div>
                     </div>
                 </topcard>
@@ -205,9 +213,17 @@ export default async function Page({ params }) {
 
                 <VideoGallery id={movie.id} req="movie"></VideoGallery>
 
-                <PhotoGallery id={movie.id} type="backdrops" req="movie"></PhotoGallery>
+                <PhotoGallery
+                    id={movie.id}
+                    type="backdrops"
+                    req="movie"
+                ></PhotoGallery>
 
-                <PhotoGallery id={movie.id} type="posters" req="movie"></PhotoGallery>
+                <PhotoGallery
+                    id={movie.id}
+                    type="posters"
+                    req="movie"
+                ></PhotoGallery>
 
                 <Recommendations id={movie.id} req="movie"></Recommendations>
             </div>

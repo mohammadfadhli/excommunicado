@@ -169,9 +169,7 @@ export default async function Page({ params }) {
                                         href={tvshow.homepage}
                                         className="mt-3 hover:text-blue-900"
                                     >
-                                        <Button color="green">
-                                            Visit Homepage
-                                        </Button>
+                                        {tvshow.homepage}
                                     </Link>
                                 </>
                             ) : (
@@ -179,6 +177,9 @@ export default async function Page({ params }) {
                                     <p className="mt-3">No Website</p>
                                 </>
                             )}
+                            <div className="mt-3">
+                                <Button color="green">Add to Favourites</Button>
+                            </div>
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
                                 {tvshow.overview != ""

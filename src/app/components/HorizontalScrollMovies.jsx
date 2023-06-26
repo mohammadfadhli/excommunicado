@@ -125,27 +125,32 @@ export default async function HorizontalScrollMovies(params) {
         res = await getTvData(params.type);
 
         showcards = res.results.map((tvshow) => (
-            <Link href={"/tvshow/" + tvshow.id} className="contents">
-                <div className="w-[150px] md:w-[200px]">
-                    <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+            <div className="w-[150px] md:w-[200px]">
+                <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+                    <Link href={"/tvshow/" + tvshow.id} className="contents">
                         <HasPicture moviesrc={tvshow.poster_path}></HasPicture>
-                    </div>
-                    <div className="m-0 py-3">
+                    </Link>
+                </div>
+                <div className="m-0 py-3">
+                    <Link
+                        href={"/tvshow/" + tvshow.id}
+                        className="hover:text-blue-500"
+                    >
                         <h1 className="text-sm font-semibold truncate">
                             {tvshow.name}
                         </h1>
-                        <div className="flex justify-between mt-1">
-                            <h1 className="text-sm font-semibold">
-                                {/* {params.movieyear.slice(0, 4)} */}
-                                {tvshow.first_air_date
-                                    ? tvshow.first_air_date.slice(0, 4)
-                                    : "Unknown"}
-                            </h1>
-                            <Rating rating={tvshow.vote_average}></Rating>
-                        </div>
+                    </Link>
+                    <div className="flex justify-between mt-1">
+                        <h1 className="text-sm font-semibold">
+                            {/* {params.movieyear.slice(0, 4)} */}
+                            {tvshow.first_air_date
+                                ? tvshow.first_air_date.slice(0, 4)
+                                : "Unknown"}
+                        </h1>
+                        <Rating rating={tvshow.vote_average}></Rating>
                     </div>
                 </div>
-            </Link>
+            </div>
         ));
     }
 

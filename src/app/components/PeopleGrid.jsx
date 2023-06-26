@@ -2,14 +2,17 @@ import Link from "next/link";
 import Image from "next/image";
 import placeholderimage from "../assets/placeholderimage.png";
 
-export default function PeopleGrid(params){
+export default function PeopleGrid(params) {
     const people = params.people;
 
     function HasPicture(params) {
         if (params.personsrc != null) {
             return (
-                <Link href={"/person/" + params.personid} className="contents">
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
+                    <Link
+                        href={"/person/" + params.personid}
+                        className="contents"
+                    >
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
                             src={
@@ -21,18 +24,26 @@ export default function PeopleGrid(params){
                             width={500}
                             height={500}
                         />
-                        <div className="py-3">
+                    </Link>
+                    <div className="py-3">
+                        <Link
+                            href={"/person/" + params.personid}
+                            className="hover:text-blue-500"
+                        >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.personname}
                             </h1>
-                        </div>
+                        </Link>
                     </div>
-                </Link>
+                </div>
             );
         } else {
             return (
-                <Link href={"/person/" + params.personid} className="contents">
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
+                    <Link
+                        href={"/person/" + params.personid}
+                        className="contents"
+                    >
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
                             src={placeholderimage}
@@ -40,20 +51,30 @@ export default function PeopleGrid(params){
                             width={500}
                             height={500}
                         />
-                        <div className="py-3">
+                    </Link>
+                    <div className="py-3">
+                        <Link
+                            href={"/person/" + params.personid}
+                            className="hover:text-blue-500"
+                        >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.personname}
                             </h1>
-                        </div>
+                        </Link>
                     </div>
-                </Link>
+                </div>
             );
         }
     }
 
-    if(people.length == 0)
-    {
-        return <><div className="flex items-center justify-center"><h1>No results found.</h1></div></>
+    if (people.length == 0) {
+        return (
+            <>
+                <div className="flex items-center justify-center">
+                    <h1>No results found.</h1>
+                </div>
+            </>
+        );
     }
 
     const peopleCards = people.map((person) => (

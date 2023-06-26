@@ -9,8 +9,11 @@ export default function MovieGrid(params) {
     function HasPicture(params) {
         if (params.moviesrc != null) {
             return (
-                <Link href={"/movie/" + params.movieid} className="contents">
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
+                    <Link
+                        href={"/movie/" + params.movieid}
+                        className="contents"
+                    >
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
                             src={
@@ -22,27 +25,35 @@ export default function MovieGrid(params) {
                             width={500}
                             height={500}
                         />
-                        <div className="py-3">
+                    </Link>
+                    <div className="py-3">
+                        <Link
+                            href={"/movie/" + params.movieid}
+                            className="hover:text-blue-500"
+                        >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.movietitle}
                             </h1>
-                            <div className="flex justify-between mt-1">
-                                <h1 className="text-sm font-semibold">
-                                    {/* {params.movieyear.slice(0, 4)} */}
-                                    {params.movieyear
-                                        ? params.movieyear.slice(0, 4)
-                                        : "Unknown"}
-                                </h1>
-                                <Rating rating={params.vote_average}></Rating>
-                            </div>
+                        </Link>
+                        <div className="flex justify-between mt-1">
+                            <h1 className="text-sm font-semibold">
+                                {/* {params.movieyear.slice(0, 4)} */}
+                                {params.movieyear
+                                    ? params.movieyear.slice(0, 4)
+                                    : "Unknown"}
+                            </h1>
+                            <Rating rating={params.vote_average}></Rating>
                         </div>
                     </div>
-                </Link>
+                </div>
             );
         } else {
             return (
-                <Link href={"/movie/" + params.movieid} className="contents">
-                    <div className="flex flex-col">
+                <div className="flex flex-col">
+                    <Link
+                        href={"/movie/" + params.movieid}
+                        className="contents"
+                    >
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
                             src={placeholderimage}
@@ -50,29 +61,39 @@ export default function MovieGrid(params) {
                             width={500}
                             height={500}
                         />
-                        <div className="py-3">
+                    </Link>
+                    <div className="py-3">
+                        <Link
+                            href={"/movie/" + params.movieid}
+                            className="hover:text-blue-500"
+                        >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.movietitle}
                             </h1>
-                            <div className="flex justify-between mt-1">
-                                <h1 className="text-sm font-semibold">
-                                    {/* {params.movieyear.slice(0, 4)} */}
-                                    {params.movieyear
-                                        ? params.movieyear.slice(0, 4)
-                                        : "Unknown"}
-                                </h1>
-                                <Rating rating={params.vote_average}></Rating>
-                            </div>
+                        </Link>
+                        <div className="flex justify-between mt-1">
+                            <h1 className="text-sm font-semibold">
+                                {/* {params.movieyear.slice(0, 4)} */}
+                                {params.movieyear
+                                    ? params.movieyear.slice(0, 4)
+                                    : "Unknown"}
+                            </h1>
+                            <Rating rating={params.vote_average}></Rating>
                         </div>
                     </div>
-                </Link>
+                </div>
             );
         }
     }
 
-    if(movies.length == 0)
-    {
-        return <><div className="flex items-center justify-center"><h1>No results found.</h1></div></>
+    if (movies.length == 0) {
+        return (
+            <>
+                <div className="flex items-center justify-center">
+                    <h1>No results found.</h1>
+                </div>
+            </>
+        );
     }
 
     const movieCards = movies.map((movie) => (

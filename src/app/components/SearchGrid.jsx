@@ -1,5 +1,3 @@
-
-
 import Image from "next/image";
 import placeholderimage from "../assets/placeholderimage.png";
 import Link from "next/link";
@@ -9,7 +7,7 @@ export default function SearchGrid(params) {
     const media = params.media;
     const mediatype = params.type;
 
-    console.log(mediatype)
+    console.log(mediatype);
 
     function HasPicture(params) {
         if (params.mediasrc != null) {
@@ -39,98 +37,103 @@ export default function SearchGrid(params) {
         if (params.ctype == "movies") {
             return (
                 <>
-                    <Link
-                        href={"/movie/" + params.media.id}
-                        className="contents"
-                    >
-                        <div className="flex flex-col">
+                    <div className="flex flex-col">
+                        <Link
+                            href={"/movie/" + params.media.id}
+                            className="contents"
+                        >
                             <HasPicture
                                 mediasrc={params.media.poster_path}
                             ></HasPicture>
-                            <div className="py-3">
+                        </Link>
+                        <div className="py-3">
+                            <Link
+                                href={"/movie/" + params.media.id}
+                                className="hover:text-blue-500"
+                            >
                                 <h1 className="text-sm font-semibold truncate">
                                     {params.media.title}
                                 </h1>
-                                <div className="flex justify-between mt-1">
-                                    <h1 className="text-sm font-semibold">
-                                        {/* {params.movieyear.slice(0, 4)} */}
-                                        {params.media.release_date
-                                            ? params.media.release_date.slice(
-                                                  0,
-                                                  4
-                                              )
-                                            : "Unknown"}
-                                    </h1>
-                                    <Rating
-                                        rating={params.media.vote_average}
-                                    ></Rating>
-                                </div>
+                            </Link>
+                            <div className="flex justify-between mt-1">
+                                <h1 className="text-sm font-semibold">
+                                    {/* {params.movieyear.slice(0, 4)} */}
+                                    {params.media.release_date
+                                        ? params.media.release_date.slice(0, 4)
+                                        : "Unknown"}
+                                </h1>
+                                <Rating
+                                    rating={params.media.vote_average}
+                                ></Rating>
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </>
             );
-        }
-        else if(params.ctype == "tvshows")
-        {
+        } else if (params.ctype == "tvshows") {
             return (
                 <>
-                    <Link
-                        href={"/tvshow/" + params.media.id}
-                        className="contents"
-                    >
-                        <div className="flex flex-col">
+                    <div className="flex flex-col">
+                        <Link
+                            href={"/tvshow/" + params.media.id}
+                            className="contents"
+                        >
                             <HasPicture
                                 mediasrc={params.media.poster_path}
                             ></HasPicture>
-                            <div className="py-3">
+                        </Link>
+                        <div className="py-3">
+                            <Link
+                                href={"/tvshow/" + params.media.id}
+                                className="hover:text-blue-500"
+                            >
                                 <h1 className="text-sm font-semibold truncate">
                                     {params.media.name}
                                 </h1>
-                                <div className="flex justify-between mt-1">
-                                    <h1 className="text-sm font-semibold">
-                                        {/* {params.movieyear.slice(0, 4)} */}
-                                        {params.media.release_date
-                                            ? params.media.release_date.slice(
-                                                  0,
-                                                  4
-                                              )
-                                            : "Unknown"}
-                                    </h1>
-                                    <Rating
-                                        rating={params.media.vote_average}
-                                    ></Rating>
-                                </div>
+                            </Link>
+                            <div className="flex justify-between mt-1">
+                                <h1 className="text-sm font-semibold">
+                                    {/* {params.movieyear.slice(0, 4)} */}
+                                    {params.media.release_date
+                                        ? params.media.release_date.slice(0, 4)
+                                        : "Unknown"}
+                                </h1>
+                                <Rating
+                                    rating={params.media.vote_average}
+                                ></Rating>
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </>
             );
-        }
-        else if(params.ctype == "people")
-        {
+        } else if (params.ctype == "people") {
             return (
                 <>
-                    <Link
-                        href={"/person/" + params.media.id}
-                        className="contents"
-                    >
-                        <div className="flex flex-col">
+                    <div className="flex flex-col">
+                        <Link
+                            href={"/person/" + params.media.id}
+                            className="contents"
+                        >
                             <HasPicture
                                 mediasrc={params.media.profile_path}
                             ></HasPicture>
-                            <div className="py-3">
+                        </Link>
+                        <div className="py-3">
+                            <Link
+                                href={"/person/" + params.media.id}
+                                className="hover:text-blue-500"
+                            >
                                 <h1 className="text-sm font-semibold truncate">
                                     {params.media.name}
                                 </h1>
-                                <div className="flex justify-between mt-1">
-                                    <Rating
-                                        rating={params.media.popularity}
-                                    ></Rating>
-                                </div>
+                            </Link>
+                            <div className="flex justify-between mt-1">
+                                <Rating
+                                    rating={params.media.popularity}
+                                ></Rating>
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </>
             );
         }

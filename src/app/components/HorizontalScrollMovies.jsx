@@ -168,9 +168,26 @@ export default async function HorizontalScrollMovies(params) {
                 <>
                     <Link
                         href={"/movies?page=1"}
-                        className="font-bold text-sm underline hover:text-blue-500"
+                        className="font-bold text-sm "
                     >
-                        View all
+                        <h2 className="font-bold text-base hover:text-blue-500 flex">
+                            {params.type == "popular" ? "Popular" : ""}{" "}
+                            {params.type == "upcoming" ? "Upcoming" : ""}{" "}
+                            {params.type == "trending" ? "Trending" : ""}{" "}
+                            {params.req == "movies" ? "Movies" : "TV Shows"}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className="w-6 h-6"
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                        </h2>
                     </Link>
                 </>
             );
@@ -180,9 +197,26 @@ export default async function HorizontalScrollMovies(params) {
             return (
                 <Link
                     href={"/" + params.type + "?page=1"}
-                    className="font-bold text-sm underline hover:text-blue-500"
+                    className="font-bold text-sm"
                 >
-                    View all
+                    <h2 className="font-bold text-base hover:text-blue-500 flex">
+                        {params.type == "popular" ? "Popular" : ""}{" "}
+                        {params.type == "upcoming" ? "Upcoming" : ""}{" "}
+                        {params.type == "trending" ? "Trending" : ""}{" "}
+                        {params.req == "movies" ? "Movies" : "TV Shows"}
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            className="w-6 h-6"
+                        >
+                            <path
+                                fillRule="evenodd"
+                                d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+                                clipRule="evenodd"
+                            />
+                        </svg>
+                    </h2>
                 </Link>
             );
         }
@@ -190,9 +224,26 @@ export default async function HorizontalScrollMovies(params) {
         return (
             <Link
                 href={"/" + "tvshows" + "?page=1"}
-                className="font-bold text-sm underline hover:text-blue-500"
+                className="font-bold text-sm"
             >
-                View all
+                <h2 className="font-bold text-base hover:text-blue-500 flex">
+                    {params.type == "popular" ? "Popular" : ""}{" "}
+                    {params.type == "upcoming" ? "Upcoming" : ""}{" "}
+                    {params.type == "trending" ? "Trending" : ""}{" "}
+                    {params.req == "movies" ? "Movies" : "TV Shows"}
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        className="w-6 h-6"
+                    >
+                        <path
+                            fillRule="evenodd"
+                            d="M16.28 11.47a.75.75 0 010 1.06l-7.5 7.5a.75.75 0 01-1.06-1.06L14.69 12 7.72 5.03a.75.75 0 011.06-1.06l7.5 7.5z"
+                            clipRule="evenodd"
+                        />
+                    </svg>
+                </h2>
             </Link>
         );
     }
@@ -201,12 +252,6 @@ export default async function HorizontalScrollMovies(params) {
         <>
             <div className="my-5 w-full">
                 <section className="flex justify-between">
-                    <h2 className="font-bold text-base">
-                        {params.type == "popular" ? "Popular" : ""}{" "}
-                        {params.type == "upcoming" ? "Upcoming" : ""}{" "}
-                        {params.type == "trending" ? "Trending" : ""}{" "}
-                        {params.req == "movies" ? "Movies" : "TV Shows"}
-                    </h2>
                     <CheckPath></CheckPath>
                 </section>
 

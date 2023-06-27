@@ -66,15 +66,20 @@ export default async function Recommendations(params) {
         res = await getMovieData(params.id)
 
         showcards = res.results.map((movie) => (
-            <Link href={"/movie/" + movie.id} className="contents">
+            
                 <div className="w-[150px] md:w-[200px]">
                     <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+                    <Link href={"/movie/" + movie.id} className="contents">
                         <HasPicture moviesrc={movie.poster_path}></HasPicture>
+                        </Link>
                     </div>
                     <div className="m-0 py-3">
+                    <Link href={"/movie/" + movie.id} className="hover:underline hover:text-blue-500">
                         <h1 className="text-sm font-semibold truncate">
                             {movie.title}
+                            
                         </h1>
+                        </Link>
                         <div className="flex justify-between mt-1">
                             <h1 className="text-sm font-semibold">
                                 {/* {params.movieyear.slice(0, 4)} */}
@@ -86,7 +91,7 @@ export default async function Recommendations(params) {
                         </div>
                     </div>
                 </div>
-            </Link>
+            
         ));
     }
     else
@@ -94,15 +99,19 @@ export default async function Recommendations(params) {
         res = await getTvData(params.id)
 
         showcards = res.results.map((tvshow) => (
-            <Link href={"/tvshow/" + tvshow.id} className="contents">
+            
                 <div className="w-[150px] md:w-[200px]">
                     <div className="m-0 w-[150px] h-[220px] md:h-[300px] md:w-[200px]">
+                    <Link href={"/tvshow/" + tvshow.id} className="contents">
                         <HasPicture moviesrc={tvshow.poster_path}></HasPicture>
+                        </Link>
                     </div>
                     <div className="m-0 py-3">
+                    <Link href={"/tvshow/" + tvshow.id} className="hover:underline hover:text-blue-500">
                         <h1 className="text-sm font-semibold truncate">
                             {tvshow.name}
                         </h1>
+                        </Link>
                         <div className="flex justify-between mt-1">
                             <h1 className="text-sm font-semibold">
                                 {/* {params.movieyear.slice(0, 4)} */}
@@ -114,7 +123,7 @@ export default async function Recommendations(params) {
                         </div>
                     </div>
                 </div>
-            </Link>
+            
         ));
     }
 

@@ -172,7 +172,7 @@ export default async function Page({ params }) {
                                         </span>
                                         <Link
                                             href={tvshow.homepage}
-                                            className=" hover:text-blue-500"
+                                            className=" hover:underline text-blue-500"
                                         >
                                             {tvshow.homepage}
                                         </Link>

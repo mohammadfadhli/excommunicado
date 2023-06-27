@@ -14,14 +14,12 @@ export default function Crew(params) {
             <>
                 <Link
                     href={"/person/" + director.id}
-                    className="hover:text-blue-500"
+                    className="hover:underline text-blue-500"
                 >
-                    {index == params.directors.length - 1 ? (
-                        <>{director.name}</>
-                    ) : (
-                        <>{director.name}, </>
-                    )}
+                    {director.name}
+
                 </Link>
+                {index != params.directors.length - 1 ? <>, </> : <></>}
             </>
         ));
 
@@ -37,14 +35,11 @@ export default function Crew(params) {
             <>
                 <Link
                     href={"/person/" + writer.id}
-                    className="hover:text-blue-500"
+                    className="hover:underline text-blue-500"
                 >
-                    {index == params.writers.length - 1 ? (
-                        <>{writer.name}</>
-                    ) : (
-                        <>{writer.name}, </>
-                    )}
+                    {writer.name}
                 </Link>
+                {index != params.writers.length - 1 ? <>, </> : <></>}
             </>
         ));
 
@@ -60,14 +55,11 @@ export default function Crew(params) {
                 <>
                     <Link
                         href={"/person/" + producer.id}
-                        className="hover:text-blue-500"
+                        className="hover:underline text-blue-500"
                     >
-                        {index == params.producers.length - 1 ? (
-                            <>{producer.name}</>
-                        ) : (
-                            <>{producer.name}, </>
-                        )}
+                        {producer.name}
                     </Link>
+                    {index != params.producers.length - 1 ? <>, </> : <></>}
                 </>
             ));
     

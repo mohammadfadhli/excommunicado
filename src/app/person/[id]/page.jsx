@@ -77,7 +77,7 @@ export default async function Page({ params }) {
         ) {
             return (
                 <>
-                    <div className="flex gap-3 mt-3">
+                    <div className="flex gap-3 mt-3 py-1">
                         {params.instagram ? (
                             <Link
                                 href={`https://www.instagram.com/${params.instagram}`} aria-label="instagram" title="Instagram"

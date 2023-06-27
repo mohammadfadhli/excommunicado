@@ -15,7 +15,6 @@ export default function FilterList(params) {
     const [par, setPar] = useState("");
 
     useEffect(() => {
-        console.log(params.genres);
 
         if (params.genres) {
             setActiveFilter(params.genres.split(","));
@@ -31,7 +30,6 @@ export default function FilterList(params) {
     }, []);
 
     function handleCheckBox(e) {
-        console.log(e.target.checked);
         if (e.target.checked) {
             setActiveFilter(
                 // Replace the state

@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar";
 import MovieCarousel from "./components/MovieCarousel";
 
 export default async function Home() {
+
     return (
         <>
             <div className="container max-w-[1024px] mx-auto p-3" id="wrapper">

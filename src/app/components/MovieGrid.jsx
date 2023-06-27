@@ -29,7 +29,7 @@ export default function MovieGrid(params) {
                     <div className="py-3">
                         <Link
                             href={"/movie/" + params.movieid}
-                            className="hover:text-blue-500"
+                            className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.movietitle}
@@ -65,7 +65,7 @@ export default function MovieGrid(params) {
                     <div className="py-3">
                         <Link
                             href={"/movie/" + params.movieid}
-                            className="hover:text-blue-500"
+                            className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.movietitle}

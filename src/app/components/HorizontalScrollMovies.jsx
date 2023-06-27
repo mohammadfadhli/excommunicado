@@ -111,7 +111,7 @@ export default async function HorizontalScrollMovies(params) {
                 <div className="m-0 py-3">
                     <Link
                         href={"/movie/" + movie.id}
-                        className="hover:text-blue-500"
+                        className="hover:underline hover:text-blue-500"
                     >
                         <h1 className="text-sm font-semibold truncate">
                             {movie.title}
@@ -142,7 +142,7 @@ export default async function HorizontalScrollMovies(params) {
                 <div className="m-0 py-3">
                     <Link
                         href={"/tvshow/" + tvshow.id}
-                        className="hover:text-blue-500"
+                        className="hover:underline hover:text-blue-500"
                     >
                         <h1 className="text-sm font-semibold truncate">
                             {tvshow.name}

@@ -28,7 +28,7 @@ export default function PeopleGrid(params) {
                     <div className="py-3">
                         <Link
                             href={"/person/" + params.personid}
-                            className="hover:text-blue-500"
+                            className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.personname}
@@ -55,7 +55,7 @@ export default function PeopleGrid(params) {
                     <div className="py-3">
                         <Link
                             href={"/person/" + params.personid}
-                            className="hover:text-blue-500"
+                            className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.personname}

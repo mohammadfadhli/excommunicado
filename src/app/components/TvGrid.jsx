@@ -24,7 +24,7 @@ export default function TvGrid(params) {
                     <div className="py-3">
                         <Link
                             href={"/tvshow/" + params.tvid}
-                            className="hover:text-blue-500"
+                            className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.tvtitle}
@@ -57,7 +57,7 @@ export default function TvGrid(params) {
                     <div className="py-3">
                         <Link
                             href={"/tvshow/" + params.tvid}
-                            className="hover:text-blue-500"
+                            className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
                                 {params.tvtitle}

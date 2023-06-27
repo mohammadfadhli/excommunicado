@@ -49,7 +49,7 @@ export default function SearchGrid(params) {
                         <div className="py-3">
                             <Link
                                 href={"/movie/" + params.media.id}
-                                className="hover:text-blue-500"
+                                className="hover:underline hover:text-blue-500"
                             >
                                 <h1 className="text-sm font-semibold truncate">
                                     {params.media.title}
@@ -85,7 +85,7 @@ export default function SearchGrid(params) {
                         <div className="py-3">
                             <Link
                                 href={"/tvshow/" + params.media.id}
-                                className="hover:text-blue-500"
+                                className="hover:underline hover:text-blue-500"
                             >
                                 <h1 className="text-sm font-semibold truncate">
                                     {params.media.name}
@@ -121,7 +121,7 @@ export default function SearchGrid(params) {
                         <div className="py-3">
                             <Link
                                 href={"/person/" + params.media.id}
-                                className="hover:text-blue-500"
+                                className="hover:underline hover:text-blue-500"
                             >
                                 <h1 className="text-sm font-semibold truncate">
                                     {params.media.name}

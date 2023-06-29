@@ -1,32 +1,37 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import {
-    Navbar,
-    MobileNav,
-    Typography,
     Button,
-    IconButton,
-    Card,
     Collapse,
+    IconButton,
     Input,
+    Navbar,
+    Typography,
 } from "@material-tailwind/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
-import LogOutButton from "./LogOutButton";
-import { useContext } from "react";
-import { AuthContext } from "../firebase/auth";
+import React, { useEffect, useState } from "react";
 
 export default function Example() {
-
-
-    const currentUid = localStorage.getItem("uid");
+    const { data: session } = useSession();
 
     const [openNav, setOpenNav] = React.useState(false);
     const [search, setSearch] = useState("");
     const [error, setError] = useState(false);
-    const [placeholdermsg, setPlaceholderMsg] = useState(
-        "Search..."
-    );
-    const { logOut, currentUser } = useContext(AuthContext);
+    const [placeholdermsg, setPlaceholderMsg] = useState("Search...");
+    const [isLogged, setisLogged] = useState(false);
+
+    useEffect(() => {
+        checkStorage();
+        return () => {};
+    }, [isLogged]);
+
+    function checkStorage() {
+        if (localStorage.getItem("uid")) {
+            setisLogged(true);
+        } else {
+            setisLogged(false);
+        }
+    }
 
     React.useEffect(() => {
         window.addEventListener(
@@ -73,7 +78,10 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal"
             >
-                <Link href={"/movies?page=1"} className="flex items-center hover:text-blue-500">
+                <Link
+                    href={"/movies?page=1"}
+                    className="flex items-center hover:text-blue-500"
+                >
                     Movies
                 </Link>
             </Typography>
@@ -83,7 +91,10 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal"
             >
-                <Link href={"/tvshows?page=1"} className="flex items-center hover:text-blue-500">
+                <Link
+                    href={"/tvshows?page=1"}
+                    className="flex items-center hover:text-blue-500"
+                >
                     TV
                 </Link>
             </Typography>
@@ -93,7 +104,10 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal "
             >
-                <Link href={"/upcoming?page=1"} className="flex items-center hover:text-blue-500">
+                <Link
+                    href={"/upcoming?page=1"}
+                    className="flex items-center hover:text-blue-500"
+                >
                     Upcoming
                 </Link>
             </Typography>
@@ -103,36 +117,40 @@ export default function Example() {
                 color="white"
                 className="p-1 font-normal "
             >
-                <Link href={"/people?page=1"} className="flex items-center hover:text-blue-500">
+                <Link
+                    href={"/people?page=1"}
+                    className="flex items-center hover:text-blue-500"
+                >
                     People
                 </Link>
             </Typography>
             <div className="relative w-full">
-
-              <form onSubmit={(e) => {
-                                searchMovie(e);
-                            }}>
-                <Input
-                    type="text"
-                    label={placeholdermsg}
-                    className="pr-20"
-                    containerProps={{
-                        className: "min-w-0",
+                <form
+                    onSubmit={(e) => {
+                        searchMovie(e);
                     }}
-                    color="white"
-                    value={search || ""}
-                    error={error}
-                    onChange={(e) => {
-                        setSearch(e.target.value);
-                    }}
-                />
-                <Button
-                  type="submit"
-                    size="sm"
-                    className="!absolute right-1 top-1 rounded"
                 >
-                    Search
-                </Button>
+                    <Input
+                        type="text"
+                        label={placeholdermsg}
+                        className="pr-20"
+                        containerProps={{
+                            className: "min-w-0",
+                        }}
+                        color="white"
+                        value={search || ""}
+                        error={error}
+                        onChange={(e) => {
+                            setSearch(e.target.value);
+                        }}
+                    />
+                    <Button
+                        type="submit"
+                        size="sm"
+                        className="!absolute right-1 top-1 rounded"
+                    >
+                        Search
+                    </Button>
                 </form>
             </div>
         </ul>
@@ -146,22 +164,31 @@ export default function Example() {
             >
                 <div className="flex items-center justify-between text-white">
                     <Link href="/">
-                    <Typography
-                        className="mr-4 cursor-pointer py-1.5 font-bold hover:text-blue-500"
-                    >
-                        Excommunicado
-                    </Typography>
+                        <Typography className="mr-4 cursor-pointer py-1.5 font-bold hover:text-blue-500">
+                            Excommunicado
+                        </Typography>
                     </Link>
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
-                        {/* <Button
-                            variant="gradient"
-                            size="sm"
-                            className="hidden lg:inline-block"
-                        >
-                            <span>Sign In</span>
-                        </Button> */}
-                        <LogOutButton currentuser={currentUser} currentUid={currentUid}></LogOutButton>
+                        {session ? (
+                            <Button
+                                variant="gradient"
+                                size="sm"
+                                className="hidden lg:inline-block"
+                                onClick={() => signOut()}
+                            >
+                                <span>Log Out</span>
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="gradient"
+                                size="sm"
+                                className="hidden lg:inline-block"
+                                onClick={() => signIn("github")}
+                            >
+                                <span>Sign In</span>
+                            </Button>
+                        )}
                         <IconButton
                             variant="text"
                             className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
@@ -203,15 +230,27 @@ export default function Example() {
                 </div>
                 <Collapse open={openNav}>
                     {navList}
-                    {/* <Button
-                        variant="gradient"
-                        size="sm"
-                        fullWidth
-                        className="mb-2"
-                    >
-                        <span>Sign In</span>
-                    </Button> */}
-                    <LogOutButton type="mobile" currentuser={currentUser} currentUid={currentUid}></LogOutButton>
+                    {session ? (
+                        <Button
+                            variant="gradient"
+                            size="sm"
+                            fullWidth
+                            className="mb-2"
+                            onClick={() => signOut()}
+                        >
+                            <span>Log Out</span>
+                        </Button>
+                    ) : (
+                        <Button
+                            variant="gradient"
+                            size="sm"
+                            fullWidth
+                            className="mb-2"
+                            onClick={() => signIn("github")}
+                        >
+                            <span>Sign In</span>
+                        </Button>
+                    )}
                 </Collapse>
             </Navbar>
         </>

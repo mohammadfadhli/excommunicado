@@ -1,50 +1,48 @@
 "use client";
 
 import {
-    Card,
-    Input,
-    Checkbox,
+    Alert,
     Button,
-    Typography,
-    Alert
+    Card,
+    Checkbox,
+    Input,
+    Typography
 } from "@material-tailwind/react";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../firebase/auth";
+import { useEffect, useState } from "react";
 
 export default function SignUpForm() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [cfmpassword, setCfmpassword] = useState("");
-    const { createUser } = useContext(AuthContext);
     const [errormsg, setErrormsg] = useState("")
 
-    async function signUp(e) {
-        e.preventDefault();
+    // async function signUp(e) {
+    //     e.preventDefault();
 
-        if(password != cfmpassword)
-        {
-            setErrormsg("Passwords do not match!")
-            console.log("Passwords do not match!")
-        }
-        else
-        {
-            await createUser(email, password)
-            .then((userCredential) => {
-                // Signed in
-                const user = userCredential.user;
-                localStorage.setItem("uid", user.uid) // use localstorage so that browser need not wait for firebase auth to finish calling state change
-                // ...
-            })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage)
-                setErrormsg(errorMessage)
-                // ..
-            });
-        }
+    //     if(password != cfmpassword)
+    //     {
+    //         setErrormsg("Passwords do not match!")
+    //         console.log("Passwords do not match!")
+    //     }
+    //     else
+    //     {
+    //         await createUser(email, password)
+    //         .then((userCredential) => {
+    //             // Signed in
+    //             const user = userCredential.user;
+    //             localStorage.setItem("uid", user.uid) // use localstorage so that browser need not wait for firebase auth to finish calling state change
+    //             // ...
+    //         })
+    //         .catch((error) => {
+    //             const errorCode = error.code;
+    //             const errorMessage = error.message;
+    //             console.log(errorMessage)
+    //             setErrormsg(errorMessage)
+    //             // ..
+    //         });
+    //     }
 
-    }
+    // }
 
     useEffect(() => {
         if (errormsg) {
@@ -77,7 +75,7 @@ export default function SignUpForm() {
             <Typography color="white" className="mt-1 font-normal">
                 Enter your details to register.
             </Typography>
-            <form className="mt-8 mb-2" onSubmit={signUp}>
+            <form className="mt-8 mb-2">
                 <div className="mb-4 flex flex-col gap-6">
                     {/* <Input size="lg" label="Name" color="white"/> */}
                     <Input

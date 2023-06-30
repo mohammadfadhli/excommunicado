@@ -9,6 +9,10 @@ import VideoGallery from "@/app/components/VideoGallery.jsx";
 import Recommendations from "@/app/components/Recommendations.jsx";
 import PhotoGallery from "@/app/components/PhotoGallery.jsx";
 import Crew from "@/app/components/Crew.jsx";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/options.js";
+import FavouritesButton from "@/app/components/FavouritesButton.jsx";
+
 
 async function getData(movieid) {
     const res = await fetch(
@@ -58,6 +62,9 @@ function getRating(rating) {
 }
 
 export default async function Page({ params }) {
+
+    const session = await getServerSession(authOptions)
+
     const movie = await getData(params.id);
     const credits = await getCredits(params.id);
     // let us_release_date = ""
@@ -206,7 +213,7 @@ export default async function Page({ params }) {
                                 </>
                             )}
                             <div className="mt-3">
-                                <Button color="green">Add to Favourites</Button>
+                                <FavouritesButton sesh={session}></FavouritesButton>
                             </div>
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">

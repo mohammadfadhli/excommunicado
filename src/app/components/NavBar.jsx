@@ -7,7 +7,7 @@ import {
     Navbar,
     Typography,
 } from "@material-tailwind/react";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
@@ -180,14 +180,15 @@ export default function Example() {
                                 <span>Log Out</span>
                             </Button>
                         ) : (
+                            <Link href="/signin">
                             <Button
                                 variant="gradient"
                                 size="sm"
                                 className="hidden lg:inline-block"
-                                onClick={() => signIn("github")}
                             >
                                 <span>Sign In</span>
                             </Button>
+                            </Link>
                         )}
                         <IconButton
                             variant="text"
@@ -241,15 +242,16 @@ export default function Example() {
                             <span>Log Out</span>
                         </Button>
                     ) : (
+                        <Link href="/signin">
                         <Button
                             variant="gradient"
                             size="sm"
                             fullWidth
                             className="mb-2"
-                            onClick={() => signIn("github")}
                         >
                             <span>Sign In</span>
                         </Button>
+                        </Link>
                     )}
                 </Collapse>
             </Navbar>

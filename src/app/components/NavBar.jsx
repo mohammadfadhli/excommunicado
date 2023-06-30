@@ -7,31 +7,16 @@ import {
     Navbar,
     Typography,
 } from "@material-tailwind/react";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
-export default function Example() {
-    const { data: session } = useSession();
+export default function Example(params) {
 
     const [openNav, setOpenNav] = React.useState(false);
     const [search, setSearch] = useState("");
     const [error, setError] = useState(false);
     const [placeholdermsg, setPlaceholderMsg] = useState("Search...");
-    const [isLogged, setisLogged] = useState(false);
-
-    useEffect(() => {
-        checkStorage();
-        return () => {};
-    }, [isLogged]);
-
-    function checkStorage() {
-        if (localStorage.getItem("uid")) {
-            setisLogged(true);
-        } else {
-            setisLogged(false);
-        }
-    }
 
     React.useEffect(() => {
         window.addEventListener(
@@ -124,6 +109,19 @@ export default function Example() {
                     People
                 </Link>
             </Typography>
+            {params.sesh ? <Typography
+                as="li"
+                variant="small"
+                color="white"
+                className="p-1 font-normal "
+            >
+                <Link
+                    href={"/profile"}
+                    className="flex items-center hover:text-blue-500"
+                >
+                    Profile
+                </Link>
+            </Typography> :  <></>}
             <div className="relative w-full">
                 <form
                     onSubmit={(e) => {
@@ -170,7 +168,7 @@ export default function Example() {
                     </Link>
                     <div className="flex items-center gap-4">
                         <div className="mr-4 hidden lg:block">{navList}</div>
-                        {session ? (
+                        {params.sesh ? (
                             <Button
                                 variant="gradient"
                                 size="sm"
@@ -231,7 +229,7 @@ export default function Example() {
                 </div>
                 <Collapse open={openNav}>
                     {navList}
-                    {session ? (
+                    {params.sesh ? (
                         <Button
                             variant="gradient"
                             size="sm"

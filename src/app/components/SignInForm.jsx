@@ -1,14 +1,11 @@
-"use client";
+"use client"
 
+import { signIn } from "next-auth/react";
 import {
     Button,
     Card,
     Typography
-} from "@material-tailwind/react";
-import { signIn } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
-import { useRouter } from 'next/navigation'
+} from "../materialui.jsx";
 
 export default function SignInForm() {
 
@@ -66,4 +63,5 @@ export default function SignInForm() {
             </form>
         </Card>
     );
+    
 }

@@ -1,6 +1,7 @@
 
 import { initFirestore } from "@auth/firebase-adapter";
 import { cert } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
 
 export const firestore = initFirestore({
     credential: cert({
@@ -9,3 +10,5 @@ export const firestore = initFirestore({
         privateKey: process.env.FIREBASE_PRIVATE_KEY,
     })
 })
+
+export const db = getFirestore()

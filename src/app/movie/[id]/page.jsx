@@ -213,7 +213,7 @@ export default async function Page({ params }) {
                                 </>
                             )}
                             <div className="mt-3">
-                                <FavouritesButton sesh={session}></FavouritesButton>
+                                <FavouritesButton sesh={session} movieid={movie.id}></FavouritesButton>
                             </div>
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">

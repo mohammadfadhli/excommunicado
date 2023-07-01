@@ -22,6 +22,8 @@ export default async function FavouritesButton(params) {
 
     if(params.sesh)
     {
+        useremail = params.sesh.user.email;
+
         const q = query(
             collection(db, "users"),
             where("email", "==", useremail)
@@ -32,8 +34,6 @@ export default async function FavouritesButton(params) {
             userdocid = doc.id;
         });
     }
-    
-
 
     async function addToFavourites() {
         if (!params.sesh) {
@@ -78,7 +78,7 @@ export default async function FavouritesButton(params) {
     async function CheckButton(params) {
         let movieinfavourites = false;
 
-        if(params.userdocid)
+        if(params.userdocid != "")
         {
             const docsSnap = await getDocs(
                 collection(db, `users/${params.userdocid}/favourite_movies`)

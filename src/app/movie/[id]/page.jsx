@@ -212,9 +212,8 @@ export default async function Page({ params }) {
                                     </div>
                                 </>
                             )}
-                            <div className="mt-3">
-                                <FavouritesButton sesh={session} movieid={movie.id}></FavouritesButton>
-                            </div>
+                                {session ? <div className="mt-3"><FavouritesButton sesh={session} movieid={movie.id}></FavouritesButton></div> : <></>}
+                                {/* <FavouritesButton sesh={session} movieid={movie.id}></FavouritesButton> */}
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
                                 {movie.overview != ""

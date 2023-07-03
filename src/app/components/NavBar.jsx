@@ -115,12 +115,12 @@ export default function Example(params) {
                 color="white"
                 className="p-1 font-normal "
             >
-                <Link
+                <a
                     href={"/profile"}
                     className="flex items-center hover:text-blue-500"
                 >
                     Profile
-                </Link>
+                </a>
             </Typography> :  <></>}
             <div className="relative w-full">
                 <form

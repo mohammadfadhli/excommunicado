@@ -1,26 +1,19 @@
-"use client";
+
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+
 import { db } from "../firebase";
-import SingleMovieComponent from "./SingleMovieComponent";
 import SingleTvShowComponent from "./SingleTvShowComponent";
 
-export default function FavouriteTvShows(params) {
-    const [favouritetvshows, setFavouriteTvShows] = useState([]);
+export default async function FavouriteTvShows(params) {
 
-    useEffect(() => {
-        async function getData() {
-            let favouritetvshows = [];
-            const querySnapshot1 = await getDocs(
-                collection(db, `users/${params.userdocid}/favourite_tv_shows`)
-            );
-            querySnapshot1.forEach((doc) => {
-                favouritetvshows.push(doc.id);
-            });
-            setFavouriteTvShows(favouritetvshows);
-        }
-        getData();
-    }, []);
+
+    let favouritetvshows = [];
+    const querySnapshot1 = await getDocs(
+        collection(db, `users/${params.userdocid}/favourite_tv_shows`)
+    );
+    querySnapshot1.forEach((doc) => {
+        favouritetvshows.push(doc.id);
+    });
 
     const favtvshows = favouritetvshows.map((tvshow) => (
         <SingleTvShowComponent tvshowid={tvshow}></SingleTvShowComponent>

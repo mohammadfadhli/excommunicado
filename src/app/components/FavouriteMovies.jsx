@@ -1,25 +1,16 @@
-"use client";
 import { collection, getDocs } from "firebase/firestore";
-import { useEffect, useState } from "react";
+
 import { db } from "../firebase";
 import SingleMovieComponent from "./SingleMovieComponent";
 
-export default function FavouriteMovies(params) {
-    const [favouritemovies, setFavouriteMovies] = useState([]);
-
-    useEffect(() => {
-        async function getData() {
-            let favouritemovies = [];
-            const querySnapshot1 = await getDocs(
-                collection(db, `users/${params.userdocid}/favourite_movies`)
-            );
-            querySnapshot1.forEach((doc) => {
-                favouritemovies.push(doc.id);
-            });
-            setFavouriteMovies(favouritemovies);
-        }
-        getData();
-    }, []);
+export default async function FavouriteMovies(params) {
+    let favouritemovies = [];
+    const querySnapshot1 = await getDocs(
+        collection(db, `users/${params.userdocid}/favourite_movies`)
+    );
+    querySnapshot1.forEach((doc) => {
+        favouritemovies.push(doc.id);
+    });
 
     const favmovies = favouritemovies.map((movie) => (
         <SingleMovieComponent movieid={movie}></SingleMovieComponent>

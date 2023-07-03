@@ -5,7 +5,7 @@ import DeleteMovieButton from "./DeleteMovieButton";
 
 async function getData(movieid) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`
+        `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`, { cache: 'no-store' }
     );
 
     // Recommendation: handle errors

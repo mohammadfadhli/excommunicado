@@ -11,7 +11,7 @@ export default function DeleteTvShowButton(params) {
         fetch(
             `../api/removetvshowfromfavourites?userdocid=${userdocid}&tvshowid=${tvshowid}`
         )
-
+        console.log("yes")
         router.refresh();
     }
 

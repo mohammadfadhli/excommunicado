@@ -5,7 +5,7 @@ import DeleteTvShowButton from "./DeleteTvShowButton";
 
 async function getData(tvshowid) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/tv/${tvshowid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`
+        `https://api.themoviedb.org/3/tv/${tvshowid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`, { cache: 'no-store' }
     );
 
     // Recommendation: handle errors

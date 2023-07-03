@@ -11,9 +11,6 @@ const nextConfig = {
         ],
         unoptimized: true,
     },
-    experimental: {
-        serverActions: true,
-    }
 };
 
 module.exports = nextConfig;

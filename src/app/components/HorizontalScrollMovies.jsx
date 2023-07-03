@@ -16,14 +16,14 @@ async function getData(type) {
         const max_date = "2023-07-30";
         const min_date = todaysdate;
         res = await fetch(
-            `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&primary_release_date.gte=${min_date}&primary_release_date.lte=${max_date}&sort_by=primary_release_date.asc&with_release_type=3&api_key=${process.env.TMDB_API_KEY}&page=1&region=${process.env.TMDB_REGION}`
+            `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&primary_release_date.gte=${min_date}&primary_release_date.lte=${max_date}&sort_by=primary_release_date.asc&with_release_type=3&api_key=${process.env.TMDB_API_KEY}&page=1&region=${process.env.TMDB_REGION}`, { cache: 'no-store' }
         );
     } else {
         // res = await fetch(
         //     `https://api.themoviedb.org/3/movie/${type}?api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}`
         // );
         res = await fetch(
-            `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}&page=1`
+            `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}&page=1`, { cache: 'no-store' }
         );
     }
 
@@ -38,7 +38,7 @@ async function getData(type) {
 
 async function getTvData(type) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/${type}/tv/week?api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}`
+        `https://api.themoviedb.org/3/${type}/tv/week?api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}`, { cache: 'no-store' }
     );
 
     // Recommendation: handle errors

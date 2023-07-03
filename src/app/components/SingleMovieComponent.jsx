@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Rating from "./Rating";
+import DeleteMovieButton from "./DeleteMovieButton";
 
 async function getData(movieid) {
     const res = await fetch(
@@ -52,7 +53,10 @@ export default async function SingleMovieComponent(params) {
                                 : "Unknown"}
                         </h1>
                         <Rating rating={res.vote_average}></Rating>
+                        
                     </div>
+                    <div className="text-center"><DeleteMovieButton movieid={res.id}></DeleteMovieButton></div>
+                    
                 </div>
             </div>
         </>

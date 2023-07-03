@@ -29,7 +29,7 @@ export default async function Page() {
     return (
         <>
             <div className="container max-w-[1024px] mx-auto p-3">
-                <h1 className="font-bold mt-5">{session.user.name}'s Profile</h1>
+                <h1 className="font-bold text-xl mt-5">{session.user.name}'s Profile</h1>
                 <FavouriteMovies userdocid={userdocid}></FavouriteMovies>
                 <FavouriteTvShows userdocid={userdocid}></FavouriteTvShows>
             </div>

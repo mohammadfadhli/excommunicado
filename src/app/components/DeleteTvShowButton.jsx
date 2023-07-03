@@ -2,14 +2,14 @@
 import { Button, IconButton } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 
-export default function DeleteMovieButton(params) {
-    const movieid = params.movieid;
+export default function DeleteTvShowButton(params) {
+    const tvshowid = params.tvshowid;
     const userdocid = params.userdocid;
     const router = useRouter();
 
-    async function removeFromFavourites(userdocid, movieid) {
+    async function removeFromFavourites(userdocid, tvshowid) {
         await fetch(
-            `../api/removefromfavourites?userdocid=${userdocid}&movieid=${movieid}`
+            `../api/removetvshowfromfavourites?userdocid=${userdocid}&tvshowid=${tvshowid}`
         )
             .then((res) => res.json())
             .then((data) => {
@@ -21,7 +21,7 @@ export default function DeleteMovieButton(params) {
 
     return (
         <IconButton
-            onClick={() => removeFromFavourites(userdocid, movieid)}
+            onClick={() => removeFromFavourites(userdocid, tvshowid)}
             color="red"
             className="hover:bg-red-800"
         >

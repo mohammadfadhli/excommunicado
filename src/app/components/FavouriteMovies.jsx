@@ -14,7 +14,7 @@ export default async function FavouriteMovies(params) {
     });
 
     const favmovies = favouritemovies.map((movie) => (
-        <SingleMovieComponent movieid={movie}></SingleMovieComponent>
+        <SingleMovieComponent movieid={movie} userdocid={params.userdocid}></SingleMovieComponent>
     ));
 
     return (

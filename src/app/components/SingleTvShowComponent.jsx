@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Rating from "./Rating";
+import DeleteTvShowButton from "./DeleteTvShowButton";
 
 async function getData(tvshowid) {
     const res = await fetch(
@@ -23,9 +24,10 @@ export default async function SingleTvShowComponent(params) {
     return (
         <>
             <div className="flex flex-col">
+                <div className="relative transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
                 <Link href={"/tvshow/" + res.id} className="contents">
                     <Image
-                        className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
+                        className="h-full w-full rounded-xl object-cover shadow-md"
                         src={
                             "https://image.tmdb.org/t/p/w500" +
                             res.poster_path
@@ -35,6 +37,10 @@ export default async function SingleTvShowComponent(params) {
                         height={500}
                     />
                 </Link>
+                <div className="absolute top-0 right-0">
+                <DeleteTvShowButton tvshowid={res.id} userdocid={params.userdocid}></DeleteTvShowButton>
+                    </div>
+                </div>
                 <div className="py-3">
                     <Link
                         href={"/tvshow/" + res.id}

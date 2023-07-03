@@ -24,9 +24,10 @@ export default async function SingleMovieComponent(params) {
     return (
         <>
             <div className="flex flex-col">
+                <div className="relative transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
                 <Link href={"/movie/" + res.id} className="contents">
                     <Image
-                        className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
+                        className="h-full w-full rounded-xl object-cover  shadow-md "
                         src={
                             "https://image.tmdb.org/t/p/w500" +
                             res.poster_path
@@ -36,6 +37,10 @@ export default async function SingleMovieComponent(params) {
                         height={500}
                     />
                 </Link>
+                <div className="absolute top-0 right-0">
+                <DeleteMovieButton movieid={res.id} userdocid={params.userdocid}></DeleteMovieButton>
+                    </div>
+                </div>
                 <div className="py-3">
                     <Link
                         href={"/movie/" + res.id}
@@ -54,9 +59,7 @@ export default async function SingleMovieComponent(params) {
                         </h1>
                         <Rating rating={res.vote_average}></Rating>
                         
-                    </div>
-                    <div className="text-center"><DeleteMovieButton movieid={res.id}></DeleteMovieButton></div>
-                    
+                    </div>                    
                 </div>
             </div>
         </>

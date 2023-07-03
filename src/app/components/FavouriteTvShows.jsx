@@ -17,7 +17,7 @@ export default async function FavouriteTvShows(params) {
     });
 
     const favtvshows = favouritetvshows.map((tvshow) => (
-        <SingleTvShowComponent tvshowid={tvshow}></SingleTvShowComponent>
+        <SingleTvShowComponent tvshowid={tvshow} userdocid={params.userdocid}></SingleTvShowComponent>
     ));
 
     return (

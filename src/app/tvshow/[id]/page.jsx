@@ -9,6 +9,19 @@ import VideoGallery from "@/app/components/VideoGallery.jsx";
 import Recommendations from "@/app/components/Recommendations.jsx";
 import PhotoGallery from "@/app/components/PhotoGallery.jsx";
 import Crew from "@/app/components/Crew.jsx";
+import FavouriteTvButton from "@/app/components/FavouriteTvButton.jsx";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/options.js";
+import {
+    collection,
+    deleteDoc,
+    doc,
+    getDocs,
+    query,
+    setDoc,
+    where,
+} from "firebase/firestore";
+import { db } from "@/app/firebase.js";
 
 async function getData(tvshowid) {
     const res = await fetch(
@@ -58,6 +71,26 @@ function getRating(rating) {
 }
 
 export default async function Page({ params }) {
+    
+    const session = await getServerSession(authOptions);
+    let signedinuserdocid = null;
+    let signedinuseremail = null;
+
+    if (session) {
+        signedinuseremail = session.user.email;
+
+        const q = query(
+            collection(db, "users"),
+            where("email", "==", signedinuseremail)
+        );
+
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id);
+            signedinuserdocid = doc.id;
+        });
+    }
+
     const tvshow = await getData(params.id);
     const credits = await getCredits(params.id);
     let tvshowgenres = [];
@@ -188,9 +221,25 @@ export default async function Page({ params }) {
                                     </div>
                                 </>
                             )}
-                            <div className="mt-3">
-                                <Button color="green">Add to Favourites</Button>
-                            </div>
+                            {session ? (
+                                <div className="mt-3">
+                                     <FavouriteTvButton
+                                        signedinuserdocid={signedinuserdocid}
+                                        useremail={session.user.email}
+                                        tvshowid={tvshow.id}
+                                    ></FavouriteTvButton>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="mt-3">
+                                        <Link href="/signin">
+                                        <Button color="green">
+                                            Add to favourites
+                                        </Button>
+                                        </Link>
+                                    </div>
+                                </>
+                            )}
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
                                 {tvshow.overview != ""

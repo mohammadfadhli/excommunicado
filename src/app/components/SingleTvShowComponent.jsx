@@ -5,15 +5,15 @@ import Rating from "./Rating";
 import { useEffect, useState } from "react";
 import { Spinner } from "@material-tailwind/react";
 
-export default function SingleMovieComponent(params) {
-    const [moviedata, setMovieData] = useState(null)
+export default function SingleTvShowComponent(params) {
+    const [tvData, setTvData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
         async function getData(){
-            await fetch(`../api/movie/${params.movieid}`).then((res) => res.json())
+            await fetch(`../api/tvshow/${params.tvshowid}`).then((res) => res.json())
             .then((data) => {
-              setMovieData(data.data)
+                setTvData(data.data)
               setIsLoading(false)
             })
         }
@@ -25,12 +25,12 @@ export default function SingleMovieComponent(params) {
         return (
             <>
                 <div className="flex flex-col">
-                    <Link href={"/movie/" + moviedata.id} className="contents">
+                    <Link href={"/tvshow/" + tvData.id} className="contents">
                         <Image
                             className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
                             src={
                                 "https://image.tmdb.org/t/p/w500" +
-                                moviedata.poster_path
+                                tvData.poster_path
                             }
                             alt="nature image"
                             width={500}
@@ -39,21 +39,21 @@ export default function SingleMovieComponent(params) {
                     </Link>
                     <div className="py-3">
                         <Link
-                            href={"/movie/" + moviedata.id}
+                            href={"/tvshow/" + tvData.id}
                             className="hover:underline hover:text-blue-500"
                         >
                             <h1 className="text-sm font-semibold truncate">
-                                {moviedata.title}
+                                {tvData.name}
                             </h1>
                         </Link>
                         <div className="flex justify-between mt-1">
                             <h1 className="text-sm font-semibold">
                                 {/* {params.movieyear.slice(0, 4)} */}
-                                {moviedata.release_date
-                                    ? moviedata.release_date.slice(0, 4)
+                                {tvData.first_air_date
+                                    ? tvData.first_air_date.slice(0, 4)
                                     : "Unknown"}
                             </h1>
-                            <Rating rating={moviedata.vote_average}></Rating>
+                            <Rating rating={tvData.vote_average}></Rating>
                         </div>
                     </div>
                 </div>

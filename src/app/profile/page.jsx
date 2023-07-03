@@ -4,6 +4,7 @@ import { db } from "../firebase";
 import { authOptions } from "../options";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import FavouriteMovies from "../components/FavouriteMovies";
+import FavouriteTvShows from "../components/FavouriteTvShows";
 
 export default async function Page() {
     const session = await getServerSession(authOptions);
@@ -28,8 +29,9 @@ export default async function Page() {
     return (
         <>
             <div className="container max-w-[1024px] mx-auto p-3">
-                <h1 className="mt-5">{session.user.name}'s Profile</h1>
+                <h1 className="font-bold mt-5">{session.user.name}'s Profile</h1>
                 <FavouriteMovies userdocid={userdocid}></FavouriteMovies>
+                <FavouriteTvShows userdocid={userdocid}></FavouriteTvShows>
             </div>
         </>
     );

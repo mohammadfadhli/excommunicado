@@ -1,9 +1,6 @@
 "use client";
 import { Button } from "@material-tailwind/react";
-import {
-    collection,
-    getDocs
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
 
@@ -24,7 +21,6 @@ export default function FavouritesButton(params) {
             docsSnap.forEach((doc) => {
                 if (doc.id == params.movieid) {
                     setMovieInFav(true);
-                    
                 }
             });
 
@@ -35,24 +31,25 @@ export default function FavouritesButton(params) {
     }, []);
 
     async function addToFavourites(userdocid, movieid) {
+        setMovieInFav(true);
         await fetch(
             `../api/addtofavourites?userdocid=${userdocid}&movieid=${movieid}`
         )
             .then((res) => res.json())
+
             .then((data) => {
                 console.log(data.result);
-                setMovieInFav(true);
             });
     }
 
     async function removeFromFavourites(userdocid, movieid) {
+        setMovieInFav(false);
         await fetch(
             `../api/removefromfavourites?userdocid=${userdocid}&movieid=${movieid}`
         )
             .then((res) => res.json())
             .then((data) => {
                 console.log(data.result);
-                setMovieInFav(false);
             });
     }
 

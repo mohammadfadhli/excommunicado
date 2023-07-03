@@ -12,7 +12,16 @@ import Crew from "@/app/components/Crew.jsx";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/options.js";
 import FavouritesButton from "@/app/components/FavouritesButton.jsx";
-
+import {
+    collection,
+    deleteDoc,
+    doc,
+    getDocs,
+    query,
+    setDoc,
+    where,
+} from "firebase/firestore";
+import { db } from "@/app/firebase.js";
 
 async function getData(movieid) {
     const res = await fetch(
@@ -62,8 +71,24 @@ function getRating(rating) {
 }
 
 export default async function Page({ params }) {
+    const session = await getServerSession(authOptions);
+    let signedinuserdocid = null;
+    let signedinuseremail = null;
 
-    const session = await getServerSession(authOptions)
+    if (session) {
+        signedinuseremail = session.user.email;
+
+        const q = query(
+            collection(db, "users"),
+            where("email", "==", signedinuseremail)
+        );
+
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id);
+            signedinuserdocid = doc.id;
+        });
+    }
 
     const movie = await getData(params.id);
     const credits = await getCredits(params.id);
@@ -189,18 +214,17 @@ export default async function Page({ params }) {
                             )}
                             {movie.homepage ? (
                                 <>
-                                <div className="mt-3">
+                                    <div className="mt-3">
                                         <span class="font-bold">
                                             Homepage:{" "}
                                         </span>
                                         <Link
-                                        href={movie.homepage}
-                                        className=" hover:underline text-blue-500"
-                                    >
-                                        {movie.homepage}
-                                    </Link>
+                                            href={movie.homepage}
+                                            className=" hover:underline text-blue-500"
+                                        >
+                                            {movie.homepage}
+                                        </Link>
                                     </div>
-                                    
                                 </>
                             ) : (
                                 <>
@@ -212,8 +236,26 @@ export default async function Page({ params }) {
                                     </div>
                                 </>
                             )}
-                                {session ? <div className="mt-3"><FavouritesButton sesh={session} movieid={movie.id}></FavouritesButton></div> : <></>}
-                                {/* <FavouritesButton sesh={session} movieid={movie.id}></FavouritesButton> */}
+                            {session ? (
+                                <div className="mt-3">
+                                    <FavouritesButton
+                                        signedinuserdocid={signedinuserdocid}
+                                        useremail={session.user.email}
+                                        movieid={movie.id}
+                                    ></FavouritesButton>
+                                </div>
+                            ) : (
+                                <>
+                                    <div className="mt-3">
+                                        <Link href="/signin">
+                                        <Button color="green">
+                                            Add to favourites
+                                        </Button>
+                                        </Link>
+                                    </div>
+                                </>
+                            )}
+
                             <h1 className="font-bold mt-3">Overview</h1>
                             <p className="mt-3 grow text-ellipsis text-base">
                                 {movie.overview != ""

@@ -2,117 +2,87 @@
 import { Button } from "@material-tailwind/react";
 import {
     collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    query,
-    setDoc,
-    where
+    getDocs
 } from "firebase/firestore";
-import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { db } from "../firebase";
 
-export default async function FavouritesButton(params) {
+export default function FavouritesButton(params) {
+    const [movieinfav, setMovieInFav] = useState(null);
+    const [buttonLoading, setButtonLoading] = useState(true);
+    let userdocid = params.signedinuserdocid;
+    let movieid = params.movieid;
 
-    const router = useRouter();
-
-    // const useremail = params.sesh.user.email;
-    let useremail = ""
-    let userdocid = "";
-
-    if(params.sesh)
-    {
-        useremail = params.sesh.user.email;
-
-        const q = query(
-            collection(db, "users"),
-            where("email", "==", useremail)
-        );
-    
-        const querySnapshot = await getDocs(q);
-        querySnapshot.forEach((doc) => {
-            userdocid = doc.id;
-        });
-    }
-
-    async function addToFavourites() {
-        if (!params.sesh) {
-            router.push("/signin");
-        } else {
-           
-            const docRef = doc(
-                db,
-                "users",
-                userdocid,
-                "favourite_movies",
-                params.movieid.toString()
-            );
-            await setDoc(docRef, {
-                movie_id: params.movieid,
-            });
-
-            router.refresh(); // to update server component page after client component state update
-
-        }
-    }
-
-    async function removeFromFavourites() {
-        if (!params.sesh) {
-            router.push("/signin");
-        } else {
-           
-            const docRef = doc(
-                db,
-                "users",
-                userdocid,
-                "favourite_movies",
-                params.movieid.toString()
-            );
-            await deleteDoc(docRef);
-
-            router.refresh(); // to update server component page after client component state update
-
-        }
-    }
-
-    async function CheckButton(params) {
-        let movieinfavourites = false;
-
-        if(params.userdocid != "")
-        {
+    useEffect(() => {
+        async function getData() {
             const docsSnap = await getDocs(
-                collection(db, `users/${params.userdocid}/favourite_movies`)
+                collection(
+                    db,
+                    `users/${params.signedinuserdocid}/favourite_movies`
+                )
             );
             docsSnap.forEach((doc) => {
                 if (doc.id == params.movieid) {
-                    movieinfavourites = true;
+                    setMovieInFav(true);
+                    
                 }
             });
+
+            setButtonLoading(false);
         }
 
-        
+        getData();
+    }, []);
 
-        if (movieinfavourites) {
+    async function addToFavourites(userdocid, movieid) {
+        await fetch(
+            `../api/addtofavourites?userdocid=${userdocid}&movieid=${movieid}`
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.result);
+                setMovieInFav(true);
+            });
+    }
+
+    async function removeFromFavourites(userdocid, movieid) {
+        await fetch(
+            `../api/removefromfavourites?userdocid=${userdocid}&movieid=${movieid}`
+        )
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data.result);
+                setMovieInFav(false);
+            });
+    }
+
+    function CheckButton() {
+        if (!buttonLoading) {
+            if (movieinfav) {
+                return (
+                    <Button
+                        color="red"
+                        onClick={() => removeFromFavourites(userdocid, movieid)}
+                    >
+                        remove from favourites
+                    </Button>
+                );
+            }
+
             return (
-                <Button color="red" onClick={() => removeFromFavourites()}> 
-                    Remove from Favourites
+                <Button
+                    color="green"
+                    onClick={() => addToFavourites(userdocid, movieid)}
+                >
+                    Add to favourites
                 </Button>
             );
         }
-
-        return (
-            <Button color="green" onClick={() => addToFavourites()}>
-                Add to Favourites
-            </Button>
-        );
     }
 
     return (
         <>
-            <CheckButton
-                movieid={params.movieid}
-                userdocid={userdocid}
-            ></CheckButton>
+            <CheckButton></CheckButton>
         </>
     );
 }

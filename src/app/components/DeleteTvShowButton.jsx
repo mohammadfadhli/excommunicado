@@ -8,13 +8,9 @@ export default function DeleteTvShowButton(params) {
     const router = useRouter();
 
     async function removeFromFavourites(userdocid, tvshowid) {
-        await fetch(
+        fetch(
             `../api/removetvshowfromfavourites?userdocid=${userdocid}&tvshowid=${tvshowid}`
         )
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data.result);
-            });
 
         router.refresh();
     }

@@ -8,13 +8,9 @@ export default function DeleteMovieButton(params) {
     const router = useRouter();
 
     async function removeFromFavourites(userdocid, movieid) {
-        await fetch(
+        fetch(
             `../api/removefromfavourites?userdocid=${userdocid}&movieid=${movieid}`
         )
-            .then((res) => res.json())
-            .then((data) => {
-                console.log(data.result);
-            });
 
         router.refresh();
     }

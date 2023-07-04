@@ -12,7 +12,8 @@ export default function DeleteMovieButton(params) {
             `../api/removefromfavourites?userdocid=${userdocid}&movieid=${movieid}`
         )
         console.log("yes")
-        window.location.reload()
+        // window.location.reload()
+        router.refresh()
     }
 
     return (

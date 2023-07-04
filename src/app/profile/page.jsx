@@ -2,6 +2,7 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { getServerSession } from "next-auth";
 import AccessDenied from "../components/AccessDenied";
 import FavouriteMoviesComponent from "../components/FavouriteMoviesComponent";
+import FavouriteTvShowsComponent from "../components/FavouriteTvShowsComponent";
 import { db } from "../firebase";
 import { authOptions } from "../options";
 
@@ -50,6 +51,9 @@ export default async function Page() {
 
                 <h1 className="mt-5">My Favourite Movies</h1>
                 <FavouriteMoviesComponent userdocid={userdocid} favouritemovies={favouritemovies}></FavouriteMoviesComponent>
+
+                <h1 className="mt-5">My Favourite TV Shows</h1>
+                <FavouriteTvShowsComponent userdocid={userdocid} favouritetvshows={favouritetvshows}></FavouriteTvShowsComponent>
             </div>
         </>
     );

@@ -11,7 +11,7 @@ export default function FavouriteMoviesComponent(params) {
     const [isDelete, setIsDelete] = useState();
 
     useEffect(() => {
-        async function getData(favouritemovies) {
+        async function getData() {
             let favmovies = [];
             await fetch(
                 `../api/getfavouritemovies?userdocid=${params.userdocid}`
@@ -57,7 +57,7 @@ export default function FavouriteMoviesComponent(params) {
         console.log(data);
         const res = data.map((movie) => (
             <div className="flex flex-col">
-                <div className="relative transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
+                <div className="transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
                     <Link href={"/movie/" + movie.data.id} className="contents">
                         <Image
                             className="h-full w-full rounded-xl object-cover shadow-md"
@@ -70,32 +70,6 @@ export default function FavouriteMoviesComponent(params) {
                             height={500}
                         />
                     </Link>
-                    <div className="absolute top-0 right-0">
-                        <IconButton
-                            color="red"
-                            onClick={() =>
-                                removeFromFavourites(
-                                    params.userdocid,
-                                    movie.data.id
-                                )
-                            }
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                strokeWidth={1.5}
-                                stroke="currentColor"
-                                className="w-6 h-6"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    d="M6 18L18 6M6 6l12 12"
-                                />
-                            </svg>
-                        </IconButton>
-                    </div>
                 </div>
                 <div className="py-3">
                     <Link
@@ -115,6 +89,20 @@ export default function FavouriteMoviesComponent(params) {
                         </h1>
                         <Rating rating={movie.data.vote_average}></Rating>
                     </div>
+                </div>
+                <div>
+                <Button
+                            color="red"
+                            onClick={() =>
+                                removeFromFavourites(
+                                    params.userdocid,
+                                    movie.data.id
+                                )
+                            }
+                            fullWidth
+                        >
+                            Remove
+                        </Button>
                 </div>
             </div>
         ));
@@ -141,8 +129,8 @@ export default function FavouriteMoviesComponent(params) {
     }
 
     return (
-        <div className="flex justify-center mt-5">
-            <Spinner className="h-12 w-12" />
-        </div>
+            <h4 className="text-sm mt-5">Loading Movies...</h4>
     );
 }
+
+

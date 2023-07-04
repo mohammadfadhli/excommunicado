@@ -3,38 +3,37 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Rating from "./Rating";
-import { Button } from "@material-tailwind/react";
+import { Button, Spinner } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 
 export default function FavouriteTvShowsComponent(params) {
     const [data, setData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [isDelete, setIsDelete] = useState();
-    const router = useRouter();
 
     useEffect(() => {
         async function getData(favouritetvshows) {
-            let favmovies = [];
+            let favtvshows = [];
             await fetch(
                 `../api/getfavouritetvshows?userdocid=${params.userdocid}`
             )
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
-                    favmovies = data.result;
+                    favtvshows = data.result;
                 });
 
-            console.log(favmovies);
+            console.log(favtvshows);
 
-            let moviesres = [];
-            for (let i = 0; i < favmovies.length; i++) {
-                await fetch(`../api/movie/${favmovies[i]}`)
+            let tvshowsres = [];
+            for (let i = 0; i < favtvshows.length; i++) {
+                await fetch(`../api/tvshow/${favtvshows[i]}`)
                     .then((res) => res.json())
                     .then((data) => {
-                        moviesres.push(data);
+                        tvshowsres.push(data);
                     });
             }
-            setData(moviesres);
+            setData(tvshowsres);
             setIsLoading(false);
             setIsDelete(false);
         }
@@ -44,10 +43,10 @@ export default function FavouriteTvShowsComponent(params) {
 
     useEffect(() => {}, [isDelete]);
 
-    async function removeFromFavourites(userdocid, movieid) {
+    async function removeFromFavourites(userdocid, tvshowid) {
         setIsDelete(true);
         fetch(
-            `../api/removefromfavourites?userdocid=${userdocid}&movieid=${movieid}`
+            `../api/removetvshowfromfavourites?userdocid=${userdocid}&tvshowid=${tvshowid}`
         )
             .then((res) => res.json())
             .then((data) => {
@@ -57,54 +56,52 @@ export default function FavouriteTvShowsComponent(params) {
 
     if (!isLoading) {
         console.log(data);
-        const res = data.map((movie) => (
+        const res = data.map((tvshow) => (
             <div className="flex flex-col">
-                <div className="relative transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100">
-                    <Link href={"/movie/" + movie.data.id} className="contents">
+                    <Link href={"/tvshow/" + tvshow.data.id} className="contents">
                         <Image
-                            className="h-full w-full rounded-xl object-cover shadow-md "
+                            className="h-full w-full rounded-xl object-cover shadow-md transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100"
                             src={
                                 "https://image.tmdb.org/t/p/w500" +
-                                movie.data.poster_path
+                                tvshow.data.poster_path
                             }
                             alt="nature image"
                             width={500}
                             height={500}
                         />
                     </Link>
-                    <div className="absolute top-0 right-0">
-                        <Button color="red">delete</Button>
-                    </div>
-                </div>
                 <div className="py-3">
                     <Link
-                        href={"/movie/" + movie.data.id}
+                        href={"/tvshow/" + tvshow.data.id}
                         className="hover:underline hover:text-blue-500"
                     >
                         <h1 className="text-sm font-semibold truncate">
-                            {movie.data.title}
+                            {tvshow.data.name}
                         </h1>
                     </Link>
                     <div className="flex justify-between mt-1">
                         <h1 className="text-sm font-semibold">
                             {/* {params.movieyear.slice(0, 4)} */}
-                            {movie.data.release_date
-                                ? movie.data.release_date.slice(0, 4)
+                            {tvshow.data.first_air_date
+                                ? tvshow.data.first_air_date.slice(0, 4)
                                 : "Unknown"}
                         </h1>
-                        <Rating rating={movie.data.vote_average}></Rating>
+                        <Rating rating={tvshow.data.vote_average}></Rating>
                     </div>
-                    <Button
-                        color="red"
-                        onClick={() =>
-                            removeFromFavourites(
-                                params.userdocid,
-                                movie.data.id
-                            )
-                        }
-                    >
-                        Delete
-                    </Button>
+                </div>
+                <div>
+                <Button
+                            color="red"
+                            onClick={() =>
+                                removeFromFavourites(
+                                    params.userdocid,
+                                    tvshow.data.id
+                                )
+                            }
+                            fullWidth
+                        >
+                            Remove
+                        </Button>
                 </div>
             </div>
         ));
@@ -129,4 +126,8 @@ export default function FavouriteTvShowsComponent(params) {
             </h4>
         );
     }
+
+    return (
+            <h4 className="text-sm mt-5">Loading TV Shows...</h4>
+    );
 }

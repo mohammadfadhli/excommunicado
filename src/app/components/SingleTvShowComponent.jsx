@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Rating from "./Rating";
+import placeholderimage from "../assets/placeholderimage.png";
 
 async function getData(tvshowid) {
     const res = await fetch(
@@ -25,16 +26,34 @@ export default async function SingleTvShowComponent(params) {
         alltvshows.push(res);
     }
 
-    const allfavtvshows = alltvshows.map((tvshow) => (
-        <div className="flex flex-col">
-            <Link href={"/tvshow/" + tvshow.id} className="contents">
+    function HasPicture(params) {
+        if (params.mediasrc != null) {
+            return (
                 <Image
-                    className="h-full w-full rounded-xl object-cover shadow-md transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100"
-                    src={"https://image.tmdb.org/t/p/w500" + tvshow.poster_path}
+                    className="h-full w-full rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 overflow-hidden shadow-md"
+                    src={"https://image.tmdb.org/t/p/w342" + params.mediasrc}
                     alt="nature image"
                     width={500}
                     height={500}
                 />
+            );
+        } else {
+            return (
+                <Image
+                    className="h-full w-full min-h-[254px] rounded-xl object-cover transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100 shadow-md"
+                    src={placeholderimage}
+                    alt="nature image"
+                    width={500}
+                    height={500}
+                />
+            );
+        }
+    }
+
+    const allfavtvshows = alltvshows.map((tvshow) => (
+        <div className="flex flex-col">
+            <Link href={"/tvshow/" + tvshow.id} className="contents">
+            <HasPicture mediasrc={tvshow.poster_path}></HasPicture>
             </Link>
             <div className="py-3">
                 <Link

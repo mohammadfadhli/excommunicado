@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Rating from "./Rating";
-import DeleteMovieButton from "./DeleteMovieButton";
 
 async function getData(movieid) {
     const res = await fetch(
-        `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`, { cache: 'no-store' }
+        `https://api.themoviedb.org/3/movie/${movieid}?api_key=${process.env.TMDB_API_KEY}&append_to_response=release_dates`,
+        { cache: "no-store" }
     );
 
     // Recommendation: handle errors
@@ -19,44 +19,54 @@ async function getData(movieid) {
 
 export default async function SingleMovieComponent(params) {
 
-    const res = await getData(params.movieid)
+    let allmovies = [];
 
-    return (
-        <>
-            <div className="flex flex-col">
-                <Link href={"/movie/" + res.id} className="contents">
-                    <Image
-                        className="h-full w-full rounded-xl object-cover shadow-md transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100"
-                        src={
-                            "https://image.tmdb.org/t/p/w500" +
-                            res.poster_path
-                        }
-                        alt="nature image"
-                        width={500}
-                        height={500}
-                    />
+    for (let i = 0; i < params.favouritemovies.length; i++) {
+        const res = await getData(params.favouritemovies[i]);
+        allmovies.push(res);
+    }
+
+    const allfavmovies = allmovies.map((movie) => (
+        <div className="flex flex-col">
+            <Link href={"/movie/" + movie.id} className="contents">
+                <Image
+                    className="h-full w-full rounded-xl object-cover shadow-md transition ease-in-out delay-0 hover:-translate-y-1 hover:scale-100"
+                    src={"https://image.tmdb.org/t/p/w500" + movie.poster_path}
+                    alt="nature image"
+                    width={500}
+                    height={500}
+                />
+            </Link>
+            <div className="py-3">
+                <Link
+                    href={"/movie/" + movie.id}
+                    className="hover:underline hover:text-blue-500"
+                >
+                    <h1 className="text-sm font-semibold truncate">
+                        {movie.title}
+                    </h1>
                 </Link>
-                <div className="py-3">
-                    <Link
-                        href={"/movie/" + res.id}
-                        className="hover:underline hover:text-blue-500"
-                    >
-                        <h1 className="text-sm font-semibold truncate">
-                            {res.title}
-                        </h1>
-                    </Link>
-                    <div className="flex justify-between mt-1">
-                        <h1 className="text-sm font-semibold">
-                            {/* {params.movieyear.slice(0, 4)} */}
-                            {res.release_date
-                                ? res.release_date.slice(0, 4)
-                                : "Unknown"}
-                        </h1>
-                        <Rating rating={res.vote_average}></Rating>
-                    </div>          
+                <div className="flex justify-between mt-1">
+                    <h1 className="text-sm font-semibold">
+                        {/* {params.movieyear.slice(0, 4)} */}
+                        {movie.release_date
+                            ? movie.release_date.slice(0, 4)
+                            : "Unknown"}
+                    </h1>
+                    <Rating rating={movie.vote_average}></Rating>
                 </div>
             </div>
-        </>
-    );
+        </div>
+    ));
+
+    if(allmovies.length > 0)
+    {
+        return <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 mt-5 content-stretch">
+            {allfavmovies}
+        </div>
+    }
+
+    return <h4 className="mt-5 text-sm">You do not have any favourite movies. Add them <Link href="movies?page=1" className="text-blue-500 hover:underline">here.</Link></h4>
+
 
 }

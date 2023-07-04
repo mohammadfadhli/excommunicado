@@ -19,10 +19,7 @@ Introducing [excommunicado](https://excommunicado.vercel.app/), your go-to desti
 * [![TailwindCSS][TailwindCSS]][TailwindCSS-url]
 * [![Vercel][Vercel]][Vercel-url]
 
-<!-- GETTING STARTED -->
-## Getting Started
-
-### Live Site
+## Live Site
 
 https://excommunicado.vercel.app/
 

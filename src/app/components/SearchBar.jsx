@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Input, Button, Alert } from "../materialui.jsx";
+import { Button, Input } from "../materialui.jsx";
 
 export default function SearchBar(params) {
     const [search, setSearch] = useState(params.query);

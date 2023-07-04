@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 
-import { ButtonGroup, Button } from "@material-tailwind/react";
 
 export default function SearchButtonGroup(params) {
     return (

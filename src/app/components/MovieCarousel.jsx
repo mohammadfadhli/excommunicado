@@ -1,6 +1,5 @@
-import { Typography, Button } from "../materialui.jsx";
-import Image from "next/image.js";
 import Link from "next/link.js";
+import { Typography } from "../materialui.jsx";
 import CarouselComponent from "./CarouselComponent.jsx";
 
 async function getData() {

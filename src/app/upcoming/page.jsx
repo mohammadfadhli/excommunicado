@@ -9,7 +9,7 @@ async function getData(genres, page) {
     const date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
     const todaysdate = date.toISOString().split("T")[0];
 
-    const max_date = "2023-07-30";
+    const max_date = "2024-12-30";
     const min_date = todaysdate;
 
     const res = await fetch(

@@ -13,7 +13,7 @@ async function getData(type) {
         const date = new Date(d.getFullYear(), d.getMonth(), d.getDate());
         const todaysdate = date.toISOString().split("T")[0];
 
-        const max_date = "2023-07-30";
+        const max_date = "2024-12-30";
         const min_date = todaysdate;
         res = await fetch(
             `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&primary_release_date.gte=${min_date}&primary_release_date.lte=${max_date}&sort_by=primary_release_date.asc&with_release_type=3&api_key=${process.env.TMDB_API_KEY}&page=1&region=${process.env.TMDB_REGION}`, { cache: 'no-store' }

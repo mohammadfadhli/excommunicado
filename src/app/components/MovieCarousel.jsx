@@ -4,7 +4,7 @@ import CarouselComponent from "./CarouselComponent.jsx";
 
 async function getData() {
     const res = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.TMDB_API_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.TMDB_API_KEY}`, { cache: 'no-store' }
     );
 
     // Recommendation: handle errors

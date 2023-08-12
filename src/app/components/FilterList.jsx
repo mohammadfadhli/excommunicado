@@ -103,6 +103,7 @@ export default function FilterList(params) {
                         <Button
                             variant="gradient"
                             className="flex items-center gap-3"
+                            color="blue"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"

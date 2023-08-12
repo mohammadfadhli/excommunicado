@@ -146,6 +146,7 @@ export default function Example(params) {
                         type="submit"
                         size="sm"
                         className="!absolute right-1 top-1 rounded"
+                        color="blue"
                     >
                         Search
                     </Button>
@@ -174,6 +175,7 @@ export default function Example(params) {
                                 size="sm"
                                 className="hidden lg:inline-block"
                                 onClick={() => signOut()}
+                                color="blue"
                             >
                                 <span>Log Out</span>
                             </Button>

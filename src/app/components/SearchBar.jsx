@@ -65,6 +65,7 @@ export default function SearchBar(params) {
                                 type="submit"
                                 size="sm"
                                 className="!absolute right-1 top-1 rounded"
+                                color="blue"
                             >
                                 Search
                             </Button>

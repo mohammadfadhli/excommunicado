@@ -22,6 +22,7 @@ import {
     where,
 } from "firebase/firestore";
 import { db } from "@/app/firebase.js";
+import TvPlayer from "@/app/components/TvPlayer.jsx";
 
 async function getData(tvshowid) {
     const res = await fetch(
@@ -269,6 +270,8 @@ export default async function Page({ params }) {
                 ></PhotoGallery>
 
                 <Recommendations id={tvshow.id} req="tvshow"></Recommendations>
+
+                <TvPlayer id={tvshow.id} title={tvshow.name} seasons={tvshow.seasons} numofseasons={tvshow.number_of_seasons}></TvPlayer>
             </div>
         </>
     );

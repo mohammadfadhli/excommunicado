@@ -53,18 +53,12 @@ export default function TvPlayer(params) {
                     <RenderSeasons s={params.numofseasons}></RenderSeasons>
                 </select>
 
-            {/* <h1 className="font-bold mb-3">Episodes</h1>
+            <h1 className="font-bold mb-3">Episodes</h1>
             <div className="flex flex-wrap gap-3">
                 <RenderEpisodesButtons
                     s={params.seasons}
                 ></RenderEpisodesButtons>
-            </div> */}
-
-            <div className="flex flex-nowrap gap-3 py-3 overflow-x-scroll">
-            <RenderEpisodesButtons
-                    s={params.seasons}
-                ></RenderEpisodesButtons>
-                    </div>
+            </div>
 
             <div className="my-5">
                 <h1 className="font-bold pb-3">

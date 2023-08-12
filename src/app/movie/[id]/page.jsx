@@ -271,7 +271,7 @@ export default async function Page({ params }) {
 
                 <Cast movieid={movie.id} credits={credits.cast}></Cast>
 
-                <MoviePlayer id={movie.id}></MoviePlayer>
+                <MoviePlayer id={movie.id} title={movie.title}></MoviePlayer>
 
                 <VideoGallery id={movie.id} req="movie"></VideoGallery>
 

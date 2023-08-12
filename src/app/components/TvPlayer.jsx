@@ -15,6 +15,14 @@ export default function TvPlayer(params) {
         return indents;
     }
 
+    function RenderEpisodes(params){
+        var indents = [];
+        for (var i = 1; i <= params.s[season - 1].episode_count; i++) {
+            indents.push(<option value={i} className="rounded">Episode {i}</option>);
+        }
+        return indents;
+    }
+
     function RenderEpisodesButtons(params) {
         var indents = [];
         for (var i = 1; i <= params.s[season - 1].episode_count; i++) {
@@ -43,6 +51,7 @@ export default function TvPlayer(params) {
 
     return (
         <>
+            <div className="flex flex-wrap gap-3">
                 <select
                     name="Season"
                     id="Season"
@@ -53,18 +62,34 @@ export default function TvPlayer(params) {
                     <RenderSeasons s={params.numofseasons}></RenderSeasons>
                 </select>
 
-            <h1 className="font-bold mb-3">Episodes</h1>
-            <div className="flex flex-wrap gap-3">
-                <RenderEpisodesButtons
-                    s={params.seasons}
-                ></RenderEpisodesButtons>
+                <select
+                    name="Episode"
+                    id="Episode"
+                    value={episode}
+                    className="mb-3 h-10 rounded border-r-8 border-transparent px-4 text-sm outline outline-1 outline-transparent bg-black"
+                    onChange={(e) => handleEpisodeClick(e.target.value)}
+                >
+                    <RenderEpisodes s={params.seasons}></RenderEpisodes>
+                </select>
             </div>
 
-            <div className="my-5">
+            <div className="mb-5">
                 <h1 className="font-bold pb-3">
                     Watch {params.title} Season {season} Episode {episode}
                 </h1>
                 <iframe
+                    src={
+                        "https://multiembed.mov/?video_id=" +
+                        params.id +
+                        "&tmdb=1&s=" +
+                        season +
+                        "&e=" +
+                        episode
+                    }
+                    class="w-full aspect-video"
+                    allowFullScreen
+                ></iframe>
+                {/* <iframe
                     src={
                         "https://multiembed.mov/directstream.php?video_id=" +
                         params.id +
@@ -75,7 +100,7 @@ export default function TvPlayer(params) {
                     }
                     class="w-full aspect-video"
                     allowFullScreen
-                ></iframe>
+                ></iframe> */}
             </div>
         </>
     );

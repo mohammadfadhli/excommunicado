@@ -255,6 +255,8 @@ export default async function Page({ params }) {
 
                 <Cast credits={credits.cast}></Cast>
 
+                <TvPlayer id={tvshow.id} title={tvshow.name} seasons={tvshow.seasons} numofseasons={tvshow.number_of_seasons}></TvPlayer>
+
                 <VideoGallery id={tvshow.id} req="tvshow"></VideoGallery>
 
                 <PhotoGallery
@@ -271,7 +273,6 @@ export default async function Page({ params }) {
 
                 <Recommendations id={tvshow.id} req="tvshow"></Recommendations>
 
-                <TvPlayer id={tvshow.id} title={tvshow.name} seasons={tvshow.seasons} numofseasons={tvshow.number_of_seasons}></TvPlayer>
             </div>
         </>
     );

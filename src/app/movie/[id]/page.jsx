@@ -12,6 +12,7 @@ import Crew from "@/app/components/Crew.jsx";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/options.js";
 import FavouritesButton from "@/app/components/FavouritesButton.jsx";
+import MoviePlayer from "@/app/components/MoviePlayer.jsx";
 import {
     collection,
     deleteDoc,
@@ -269,6 +270,8 @@ export default async function Page({ params }) {
                 <Crew movieid={movie.id} credits={credits.crew}></Crew>
 
                 <Cast movieid={movie.id} credits={credits.cast}></Cast>
+
+                <MoviePlayer id={movie.id}></MoviePlayer>
 
                 <VideoGallery id={movie.id} req="movie"></VideoGallery>
 

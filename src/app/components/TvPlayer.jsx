@@ -77,7 +77,7 @@ export default function TvPlayer(params) {
                 <h1 className="font-bold pb-3">
                     Watch {params.title} Season {season} Episode {episode}
                 </h1>
-                <iframe
+                {/* <iframe
                     src={
                         "https://multiembed.mov/?video_id=" +
                         params.id +
@@ -88,8 +88,8 @@ export default function TvPlayer(params) {
                     }
                     class="w-full aspect-video"
                     allowFullScreen
-                ></iframe>
-                {/* <iframe
+                ></iframe> */}
+                <iframe
                     src={
                         "https://multiembed.mov/directstream.php?video_id=" +
                         params.id +
@@ -100,7 +100,7 @@ export default function TvPlayer(params) {
                     }
                     class="w-full aspect-video"
                     allowFullScreen
-                ></iframe> */}
+                ></iframe>
             </div>
         </>
     );

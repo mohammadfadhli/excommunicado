@@ -185,6 +185,7 @@ export default function Example(params) {
                                 variant="gradient"
                                 size="sm"
                                 className="hidden lg:inline-block"
+                                color="blue"
                             >
                                 <span>Sign In</span>
                             </Button>
@@ -248,6 +249,7 @@ export default function Example(params) {
                             size="sm"
                             fullWidth
                             className="mb-2"
+                            color="blue"
                         >
                             <span>Sign In</span>
                         </Button>

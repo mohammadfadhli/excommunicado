@@ -12,6 +12,10 @@ async function getData(genres, page) {
     const max_date = "2024-12-30";
     const min_date = todaysdate;
 
+    if(genres === undefined){
+        genres = "";
+    }
+
     const res = await fetch(
         // `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&with_release_type=2|3&release_date.gte=${min_date}&release_date.lte=${max_date}&api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}&page=${page}&with_genres=${genres}`
         `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&primary_release_date.gte=${min_date}&primary_release_date.lte=${max_date}&sort_by=primary_release_date.asc&with_release_type=3&api_key=${process.env.TMDB_API_KEY}&page=${page}&with_genres=${genres}&region=${process.env.TMDB_REGION}`

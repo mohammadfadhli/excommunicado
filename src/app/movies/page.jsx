@@ -4,6 +4,11 @@ import MovieGrid from "../components/MovieGrid";
 import { notFound } from "next/navigation";
 
 async function getData(genres, page) {
+
+    if(genres === undefined){
+        genres = "";
+    }
+
     const res = await fetch(
         `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc&api_key=${process.env.TMDB_API_KEY}&region=${process.env.TMDB_REGION}&page=${page}&with_genres=${genres}`
     );
@@ -17,8 +22,8 @@ async function getData(genres, page) {
 }
 
 export default async function Page({ searchParams }) {
-    const genres = searchParams.genres; // get genres from url
-    const page = searchParams.page; // get page number from url
+    let genres = searchParams.genres; // get genres from url
+    let page = searchParams.page; // get page number from url
 
     const res = await getData(genres, page);
 
